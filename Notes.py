@@ -38,35 +38,35 @@
 # Functions
 
 
-def print_hw():
-    print_hw("Hello World.")
-    print_hw("Enjoy the day.")
+#def print_hw():
+   # print_hw("Hello World.")
+    #print_hw("Enjoy the day.")
 
 
-def say_hi(name): # name is a "parameter"
-    print("Hello %s" % name)
-    print("Coding is great!")
+#def say_hi(name): # name is a "parameter"
+    #print("Hello %s" % name)
+   # print("Coding is great!")
 
 
-say_hi("Sergio")
+#say_hi("Sergio")
 
 
-def print_age(name, age):
-    print("%s is %d years old" % (name, age))
-    age = age + 1 # or age += 1
-    print("Next year, %s will be %d years old" % (name, age))
+#def print_age(name, age):
+   # print("%s is %d years old" % (name, age))
+   # age = age + 1 # or age += 1
+   # print("Next year, %s will be %d years old" % (name, age))
 
 
-print_age("Sergio", 14)
+#print_age("Sergio", 14)
 
 
-def algebra_hw(x):
-    return x**3 + 4*x**2 + 7*x - 4
+#def algebra_hw(x):
+ #   return x**3 + 4*x**2 + 7*x - 4
 
-print(algebra_hw(3))
-print(algebra_hw(4))
-print(algebra_hw(5))
-print(algebra_hw(6))
+#print(algebra_hw(3))
+#print(algebra_hw(4))
+#print(algebra_hw(5))
+#print(algebra_hw(6))
 
 
 # if statements
@@ -85,4 +85,29 @@ def grade_calc(percentage):
         return "F"
 
 
-print (grade_calc(64))
+print (grade_calc(79.9))
+
+
+def happy_bday(name):
+    print("Happy Birthday to you, Happy Birthday to you Happy Birthday dear %s, Happy Birthday to you!" % name)
+
+
+happy_bday("computer")
+
+# Loops
+
+for num in range(10):
+    print(num + 1)
+
+# While loops (BEWARE!!!!!)
+
+a = 1
+while a < 10: # This is the condition, it must be true to execute
+    print(a)
+    a += 1  # This iterates so that we can break the loop
+
+
+# Random Numbers
+import random  # This should be on line 1
+print(random.randint(0,1000))
+
