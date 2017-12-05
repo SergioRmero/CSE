@@ -1,13 +1,23 @@
-# computer comes up with number between 1 and 50
-# take input from user
-# inputs from users are ALWAYS of type string
-# compare numbers
-
-print("What number from ,0 to 50, do you think will show up?")
+# Generate a number
+# ask the user for an input(number)
+# does the guess match the number?
+# add "higher" and "lower"
+# add 5 guesses
+print("What number ,from 0 to 50, do you think will appear?")
 number = input(">_")
-print("%s is a good guess!" % number)
+
 
 import random
 print(random.randint(0,50))
 
+if input == random:
+    print("Good Job!")
+else: print("Try Again")
 
+
+if input :
+    print("Guess Lower")
+
+
+if input != random:
+    print("Guess Higher")

@@ -1,9 +1,17 @@
-# Write a Python function which accepts the user's first and last name
-# and print them in reverse order with a space in between them
+# 12.4.17
+def reverse_order(first_name, last_name):
+    print ("%s, %s" % (last_name, first_name))
+    # or print (last_name + " " + first_name
 
-def reverse_order(firstname, lastname):
-    print ("%s, %s" % (lastname, firstname))
-    #or print (lastname + " " + firstname
 
 reverse_order("Sergio", "Romero")
+
+
+# 12.5.17
+def add_py(name):
+    print("%s.py" % name)
+    # or print(name + .py)
+
+
+add_py("Sergio") == "Sergio.py"
 
