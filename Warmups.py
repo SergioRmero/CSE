@@ -15,3 +15,11 @@ def add_py(name):
 
 add_py("Sergio") == "Sergio.py"
 
+
+# 12.6.17
+def add(num1, num2, num3): # can call parameters whatever you want
+    print(num1 + num2 + num3)
+
+
+add(15, 18, 9000)
+add(60, 90, 100)
