@@ -38,14 +38,14 @@ print("%s?!  That's really old. You belong in a retirement home." % age)
 # Functions
 
 
-#def print_hw():
-   # print_hw("Hello World.")
-    #print_hw("Enjoy the day.")
+# def print_hw():
+# print_hw("Hello World.")
+# print_hw("Enjoy the day.")
 
 
-#def say_hi(name): # name is a "parameter"
-    #print("Hello %s" % name)
-   # print("Coding is great!")
+# def say_hi(name): # name is a "parameter"
+# print("Hello %s" % name)
+# print("Coding is great!")
 
 
 #say_hi("Sergio")
@@ -60,13 +60,13 @@ def print_age(name, age):
 print_age("Sergio", 14)
 
 
-#def algebra_hw(x):
- #   return x**3 + 4*x**2 + 7*x - 4
+# def algebra_hw(x):
+#   return x**3 + 4*x**2 + 7*x - 4
 
-#print(algebra_hw(3))
-#print(algebra_hw(4))
-#print(algebra_hw(5))
-#print(algebra_hw(6))
+# print(algebra_hw(3))
+# print(algebra_hw(4))
+# print(algebra_hw(5))
+# print(algebra_hw(6))
 
 
 # if statements
@@ -88,23 +88,23 @@ def grade_calc(percentage):
 print (grade_calc(79.9))
 
 
-#def happy_bday(name):
- #   print("Happy Birthday to you, Happy Birthday to you Happy Birthday dear %s, Happy Birthday to you!" % name)
+# def happy_bday(name):
+#   print("Happy Birthday to you, Happy Birthday to you Happy Birthday dear %s, Happy Birthday to you!" % name)
 
 
-#happy_bday("computer")
+# happy_bday("computer")
 
 # Loops
 
-#for num in range(10):
-   # print(num + 1)
+# for num in range(10):
+#  print(num + 1)
 
 # While loops (BEWARE!!!!!)
 
-#a = 1
-#while a < 10: # This is the condition, it must be true to execute
+# a = 1
+# while a < 10: # This is the condition, it must be true to execute
 #    print(a)
- #   a += 1  # This iterates so that we can break the loop
+#    a += 1  # This iterates so that we can break the loop
 
 
 # Random Numbers

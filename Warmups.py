@@ -23,3 +23,9 @@ def add(num1, num2, num3): # can call parameters whatever you want
 
 add(15, 18, 9000)
 add(60, 90, 100)
+
+
+# 12.7.17
+for x in range(3):
+    print("Hello")
+
