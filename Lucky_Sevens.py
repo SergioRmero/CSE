@@ -10,5 +10,5 @@ print("Hint: type $1")
 one_dollar = input(">_")
 
 while D1 + D2 == 7:
-    
+
 
