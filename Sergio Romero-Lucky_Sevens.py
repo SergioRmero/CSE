@@ -5,7 +5,6 @@ level = 0
 while money > 0:
     print("Lets play Lucky Sevens!")
     print("Bet one dollar to get started!")
-    print("Hint: type 1")
     input(">_")
     money -= 1
     level = level + 1
