@@ -128,24 +128,51 @@
 
 the_count = [1, 2, 3, 4, 5]
 cheeseburger_ingredients = ['cheese', 'beef', 'sauce', 'sesame seed bun', 'avocado', 'onion']
-# print(cheeseburger_ingredients[0])
-# print(cheeseburger_ingredients[3])
-# print(len(cheeseburger_ingredients))
-# print(len(the_count))
+print(cheeseburger_ingredients[0])
+print(cheeseburger_ingredients[3])
+print(len(cheeseburger_ingredients))
+print(len(the_count))
 
 # Going through lists
 
 for generic_item_name in cheeseburger_ingredients:
     print(generic_item_name)
 
-for num in the_count:
-    print(num * 2)
+#for num in the_count:
+#    print(num * 2)
 
 length = len(cheeseburger_ingredients)
 range(5)  # A list of the numbers 0 through 4
 range(len(cheeseburger_ingredients))  # Generates a list of all indices
 
-for num in range(len(cheeseburger_ingredients)):
-    item = cheeseburger_ingredients[num]
-    print("The item at index %d is %s" % (num, item))
+#for num in range(len(cheeseburger_ingredients)):
+#    item = cheeseburger_ingredients[num]
+#    print("The item at index %d is %s" % (num, item))
 
+# Recasting into a list
+#strOne = "Hello World!"
+#listOne = list(strOne)
+#print(listOne)
+#listOne[11] = '.'
+#print(listOne[-1])
+
+# Adding things to a list
+#cheeseburger_ingredients.append("Fries")
+#cheeseburger_ingredients.append("bacon")
+#print(cheeseburger_ingredients)
+
+# Remove things from a list
+#cheeseburger_ingredients.pop(1)
+#print(cheeseburger_ingredients)
+#cheeseburger_ingredients.remove("cheese")
+#print(cheeseburger_ingredients)
+
+# Getting the alphabet
+#import string
+#print(string.ascii_lowercase)
+#print(string.punctuation)
+
+# Making things Lowercase
+#strTwo = "ThIs Is A VeRY oDd sEnTeNCe"
+#lowercase = strTwo.lower()
+#print(lowercase)
