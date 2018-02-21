@@ -22,3 +22,17 @@ burger2 = Cheeseburger("Bacon", "Swiss")
 
 print(burger1.eaten)
 print(burger2.cheese)
+
+burger1.eat()
+print(burger1.eaten)
+print(burger2.eaten)
+
+
+class Car(object):
+    def __init__(self, name, color, num_of_doors, hp):
+        self.color = color
+        self.doors = num_of_doors
+        self.running = False
+        self.HP = hp
+        self.passengers = 0
+        self.name = name
