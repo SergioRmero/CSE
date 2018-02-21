@@ -1,0 +1,1 @@
+def pythagorean(a, b):
