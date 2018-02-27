@@ -18,7 +18,12 @@ chosen = random.choice(word)  # chooses a random word from your list
 
 print(one_st)
 while True:
-    shrug = input("Guess a letter :")  # the users input
+    letter = input("Guess a letter :")  # the users input
     for letter in chosen:
         one_st.append(letter)  # adds the letter to the list
         u_ls.append('*')  # adds a * for every letter in your word
+        if letter in word:
+            print("The word does contain:", letter)
+        else:
+            print("Sorry the word doesn't contain:", letter)
+   
