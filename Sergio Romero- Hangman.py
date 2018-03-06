@@ -1,29 +1,27 @@
-import random
-
-# This is a guide how to make hangman
-# 1. Make word bank - 10 items
-# 2. Select a random item to guess
-# 3. Take in a letter and add it to a list of letters_guessed, hide it and reveal letters
-# 4. Reveal letters based on input
-# 5. Create win and lose conditions
-
-
-word = ['name', 'science', 'election', 'overeat', 'dramatic', 'revoke', 'positive', 'tide', 'knuckles', 'victory']
+word_bank = ['name', 'science', 'election', 'overeat', 'dramatic', 'revoke', 'positive', 'tide', 'knuckles', 'victory']
+shown_word = ['_'] * len(word_bank)
+Input = ">_"
 lives = 10
-one_st = []  # the list where the characters of your word goes
-u_ls = []  # the list where the players guesses go
+letter_number = 0
+correct_guesses = 0
 
-chosen = random.choice(word)  # chooses a random word from your list
+while lives != 0:
+    print("The word is:" + str(shown_word))
+    print("You have " + str(lives) + " lives left")
+    Input = raw_input("Enter guess: ")
 
+    while letter_number < len(word_bank):
+        if word_bank[letter_number] == Input:
+            shown_word[letter_number] = Input
+            correct_guesses += 1
+        letter_number += 1
 
-print(one_st)
-while True:
-    letter = input("Guess a letter :")  # the users input
-    for letter in chosen:
-        one_st.append(letter)  # adds the letter to the list
-        u_ls.append('*')  # adds a * for every letter in your word
-        if letter in word:
-            print("The word does contain:", letter)
-        else:
-            print("Sorry the word doesn't contain:", letter)
-   
+    lives -= 1
+
+    if correct_guesses == len(word_bank):
+        print("You won!")
+        break
+
+    if lives == 0:
+        print("You lost")
+        print()
