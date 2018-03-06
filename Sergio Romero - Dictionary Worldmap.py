@@ -1,4 +1,3 @@
-
 world_map = {
     'SPAWN': {
         'NAME': 'SPAWN',
@@ -42,7 +41,7 @@ world_map = {
     },
     'BED ROOM': {
         'NAME': 'Bed Room',
-        ' DESCRIPTION': 'NONE YET',
+        'DESCRIPTION': 'none yet',
         'PATHS': {
             'UP': 'ATTIC',
             'SOUTH': 'RESTROOM',
@@ -78,7 +77,8 @@ current_node = world_map['SPAWN']
 directions = ['SOUTH', 'NORTH', 'EAST', 'WEST', 'DOWN', 'UP', 'NE', 'NORTHEAST', 'SE', 'SOUTHEAST']
 
 while True:
-    print(current_node['NAME'] + '\n' + current_node['DESCRIPTION'])
+    print(current_node['NAME'])
+    print(current_node['DESCRIPTION'])
     command = input('>_')
     if command == 'quit':
         quit(0)

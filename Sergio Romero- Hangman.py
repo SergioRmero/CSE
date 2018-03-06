@@ -8,17 +8,33 @@ import random
 # 5. Create win and lose conditions
 
 
-word = ['name', 'science', 'election', 'overeat', 'dramatic', 'revoke', 'positive', 'tide', 'knuckles', 'victory']
+word_bank = ['name', 'science', 'election', 'overeat', 'dramatic', 'revoke', 'positive', 'tide', 'knuckles', 'victory']
+chosen = random.choice(word_bank)
+shown_word = ['*'] * len(chosen)
+Input = ">_"
 lives = 10
-one_st = []  # the list where the characters of your word goes
-u_ls = []  # the list where the players guesses go
-
-chosen = random.choice(word)  # chooses a random word from your list
+letter_number = 0
+correct_guesses = 0
 
 
-print(one_st)
-while True:
-    shrug = input("Guess a letter :")  # the users input
-    for letter in chosen:
-        one_st.append(letter)  # adds the letter to the list
-        u_ls.append('*')  # adds a * for every letter in your word
+
+while lives != 0:
+    print("The word is:" + str(shown_word))
+    print("You have " + str(lives) + " lives left")
+    Input = input("Enter guess: ")
+
+    while letter_number < len(chosen):
+        if chosen[letter_number] == Input:
+            shown_word[letter_number] = Input
+            correct_guesses += 1
+        letter_number += 1
+
+    lives -= 1
+
+    if correct_guesses == len(chosen):
+        print("You won!")
+        break
+
+    if lives == 0:
+        print("You lost")
+        print("The word was " + chosen)
