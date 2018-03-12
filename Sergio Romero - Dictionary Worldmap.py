@@ -70,7 +70,37 @@ world_map = {
             'DOWN': 'BED ROOM'
         }
     },
-
+    'PORCH': {
+        'NAME': 'Porch',
+        'DESCRIPTION': 'NONE YET',
+        'PATHS': {
+            'NORTH': 'LIVING ROOM',
+            'SOUTH': 'STREET'
+        }
+    },
+    'GARAGE': {
+        'NAME': 'Garage',
+        'DESCRIPTION': 'NONE YET',
+        'PATHS': {
+            'NORTH': 'Porch',
+            'SOUTH': 'East Street'
+        }
+    },
+    'MAIN STREET': {
+        'NAME': 'Street',
+        'DESCRIPTION': 'NONE YET',
+        'PATHS': {
+            'NORTH': 'Porch',
+            'SOUTH': 'Park',
+            'EAST': 'East Street',
+            'WEST': 'West Street'
+        }
+    },
+    'STREET 2': {
+        'NAME': 'East Street',
+        'DESCRIPTION': 'NONE YET',
+        'PATHS'
+    }
 }
 
 current_node = world_map['SPAWN']
@@ -91,6 +121,6 @@ while True:
     elif command == "JEFF":
         if current_node == world_map['SPAWN']:
             print("Your friend Jeff came out of the closet, said 'mY NamE JeFf', and ate you")
-            quit('you are die')
+            quit(0)
     else:
         print("Command not recognized")
