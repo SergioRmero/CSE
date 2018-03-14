@@ -99,7 +99,9 @@ world_map = {
     'STREET 2': {
         'NAME': 'East Street',
         'DESCRIPTION': 'NONE YET',
-        'PATHS'
+        'PATHS': {
+
+        }
     }
 }
 
