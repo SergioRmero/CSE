@@ -99,7 +99,40 @@ world_map = {
     'STREET 2': {
         'NAME': 'East Street',
         'DESCRIPTION': 'NONE YET',
-        'PATHS'
+        'PATHS': {
+            'NORTH': 'Garage',
+            'EAST': 'Neighborhood Gate'
+        }
+    },
+    'STREET 3': {
+        'NAME': 'West Street',
+        'DESCRIPTION': 'NONE YET',
+        'PATHS': {
+            'EAST': 'Street',
+            'WEST': 'West Street 2'
+        }
+    },
+    'STREET 4': {
+        'NAME': 'West Street 2',
+        'DESCRIPTION': 'NONE YET',
+        'PATHS': {
+            'EAST': 'West Street',
+            'WEST': 'Town Gate'
+        }
+    },
+    'TOWN GATE': {
+        'NAME': 'Town Gate',
+        'DESCRIPTION': 'NONE YET',
+        'PATHS': {
+            'EAST': 'West Street 2'
+        }
+    },
+    'NEIGHBORHOOD GATE': {
+        'NAME': 'Neighborhood Gate',
+        'DESCRIPTION': 'NONE YET',
+        'PATHS': {
+            'WEST': 'East Street'
+        }
     }
 }
 
