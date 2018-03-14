@@ -42,6 +42,7 @@ street4 = Room("West Street 2", "None yet", None, None, "street3", "town_gate", 
 town_gate = Room("Town Gate", "None yet", None, None, "West Street 2", None, None, None, None, None)
 neighborhood_gate = Room("Neighborhood Gate", "None yet", None, None, None, 'East Street', None, None, None, None)
 
+
 current_node = spawn
 directions = ['south', 'north', 'east', 'west', 'down', 'up', 'northeast', 'southeast']
 short_directions = ['s', 'n', 'e', 'w', 'd', 'u', 'ne', 'se']

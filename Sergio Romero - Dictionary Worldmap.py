@@ -100,9 +100,6 @@ world_map = {
         'NAME': 'East Street',
         'DESCRIPTION': 'NONE YET',
         'PATHS': {
-<<<<<<< HEAD
-
-=======
             'NORTH': 'Garage',
             'EAST': 'Neighborhood Gate'
         }
@@ -135,8 +132,29 @@ world_map = {
         'DESCRIPTION': 'NONE YET',
         'PATHS': {
             'WEST': 'East Street'
->>>>>>> 5d1ab45d20e6aba821efa233d034460edc274add
         }
+    },
+    'PARK': {
+        'NAME': 'Park Gate',
+        'DESCRIPTION': 'NONE YET',
+        'PATHS': {
+            'NORTH': 'Street',
+            'SOUTH': 'Play Ground'
+        }
+    },
+    'PLAYGROUND': {
+        'NAME': 'Playground',
+        'DESCRIPTION': 'NONE YET',
+        'PATHS': {
+            'NORTH': 'Park Gate',
+            'SOUTH': 'Gated Area',
+            'EAST': 'Restrooms',
+            'WEST': 'Gated Area 2'
+        }
+    },
+    'SOUTH GATED AREA': {
+        'NAME': 'South Gated Area',
+        'DESCRIPTION':
     }
 }
 
@@ -155,7 +173,7 @@ while True:
             current_node = world_map[name_of_node]
         except KeyError:
             print("You cannot go this way")
-    elif command == "JEFF":
+    elif command == 'JEFF':
         if current_node == world_map['SPAWN']:
             print("Your friend Jeff came out of the closet, said 'mY NamE JeFf', and ate you")
             quit(0)
