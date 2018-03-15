@@ -70,91 +70,125 @@ world_map = {
             'DOWN': 'BED ROOM'
         }
     },
+    'FRONT DOOR': {
+        'NAME': 'Front Door',
+        'DESCRIPTION': 'NONE YET',
+        'PATHS': {
+            'NORTH': 'LIVING ROOM',
+            'SOUTH': 'PORCH'
+        }
+    },
     'PORCH': {
         'NAME': 'Porch',
         'DESCRIPTION': 'NONE YET',
         'PATHS': {
             'NORTH': 'LIVING ROOM',
-            'SOUTH': 'STREET'
+            'SOUTH': 'MAIN STREET'
         }
     },
     'GARAGE': {
         'NAME': 'Garage',
         'DESCRIPTION': 'NONE YET',
         'PATHS': {
-            'NORTH': 'Porch',
-            'SOUTH': 'East Street'
+            'NORTH': 'PORCH',
+            'SOUTH': 'STREET 2'
         }
     },
     'MAIN STREET': {
         'NAME': 'Street',
         'DESCRIPTION': 'NONE YET',
         'PATHS': {
-            'NORTH': 'Porch',
-            'SOUTH': 'Park',
-            'EAST': 'East Street',
-            'WEST': 'West Street'
+            'NORTH': 'PORCH',
+            'SOUTH': 'PARK',
+            'EAST': 'STREET 2',
+            'WEST': 'STREET 3'
         }
     },
     'STREET 2': {
         'NAME': 'East Street',
         'DESCRIPTION': 'NONE YET',
         'PATHS': {
-            'NORTH': 'Garage',
-            'EAST': 'Neighborhood Gate'
+            'NORTH': 'GARAGE',
+            'EAST': 'NEIGHBORHOOD GATE',
+            'WEST': 'MAIN STREET'
         }
     },
     'STREET 3': {
         'NAME': 'West Street',
         'DESCRIPTION': 'NONE YET',
         'PATHS': {
-            'EAST': 'Street',
-            'WEST': 'West Street 2'
+            'EAST': 'STREET',
+            'WEST': 'WEST STREET 2'
         }
     },
     'STREET 4': {
         'NAME': 'West Street 2',
         'DESCRIPTION': 'NONE YET',
         'PATHS': {
-            'EAST': 'West Street',
-            'WEST': 'Town Gate'
+            'EAST': 'STREET 3',
+            'WEST': 'TOWN GATE'
         }
     },
     'TOWN GATE': {
         'NAME': 'Town Gate',
         'DESCRIPTION': 'NONE YET',
         'PATHS': {
-            'EAST': 'West Street 2'
+            'EAST': 'WEST STREET 2'
         }
     },
     'NEIGHBORHOOD GATE': {
         'NAME': 'Neighborhood Gate',
         'DESCRIPTION': 'NONE YET',
         'PATHS': {
-            'WEST': 'East Street'
+            'WEST': 'STREET 2'
         }
     },
     'PARK': {
         'NAME': 'Park Gate',
         'DESCRIPTION': 'NONE YET',
         'PATHS': {
-            'NORTH': 'Street',
-            'SOUTH': 'Play Ground'
+            'NORTH': 'MAIN STREET',
+            'SOUTH': 'PLAYGROUND'
         }
     },
     'PLAYGROUND': {
         'NAME': 'Playground',
         'DESCRIPTION': 'NONE YET',
         'PATHS': {
-            'NORTH': 'Park Gate',
-            'SOUTH': 'Gated Area',
-            'EAST': 'Restrooms',
-            'WEST': 'Gated Area 2'
+            'NORTH': 'PARK',
+            'SOUTH': 'SOUTH GATED AREA',
+            'EAST': 'RESTROOMS',
+            'WEST': ' WEST GATED AREA'
         }
     },
     'SOUTH GATED AREA': {
         'NAME': 'South Gated Area',
-        'DESCRIPTION':
+        'DESCRIPTION': 'NONE YET',
+        'PATHS': {
+            'NORTH': 'PLAYGROUND',
+            'SOUTH': 'POND'
+        }
+    },
+    'POND': {
+        'NAME': 'Pond',
+        'DESCRIPTION': 'NONE YET',
+        'PATHS': {
+            'NORTH': 'PLAYGROUND'
+        }
+    },
+    'WEST GATED AREA': {
+        'NAME': 'West Gated Area',
+        'DESCRIPTION': 'NONE YET',
+        'PATHS': {
+            'EAST': 'PLAYGROUND'
+        }
+    },
+    'RESTROOMS': {
+        'NAME': 'Restrooms',
+        'DESCRIPTION': 'NONE YET',
+        'PATHS': {
+            'EAST': 'PLAYGROUND'
+        }
     }
 }
 
