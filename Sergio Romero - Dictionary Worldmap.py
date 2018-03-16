@@ -41,7 +41,8 @@ world_map = {
     },
     'BED ROOM': {
         'NAME': 'Bed Room',
-        'DESCRIPTION': 'none yet',
+        'DESCRIPTION': 'There is a bed on the side wall, there is a night stand next to it and a desk on the other'
+                       'side of the room with a window.',
         'PATHS': {
             'UP': 'ATTIC',
             'SOUTH': 'RESTROOM',
@@ -51,28 +52,29 @@ world_map = {
     },
     'BED ROOM 2': {
         'NAME': 'Bed Room 2',
-        'DESCRIPTION': 'NONE YET',
+        'DESCRIPTION': 'It looks the same as the other bedroom except there is no window.',
         'PATHS': {
             'EAST': 'BED ROOM'
         }
     },
     'RESTROOM': {
         'NAME': 'Restroom',
-        'DESCRIPTION': 'NONE YET',
+        'DESCRIPTION': 'There is a toilet and a shower at the far back and a sink with a mirror on the side.',
         'PATHS': {
             'SOUTH': 'BED ROOM'
         }
     },
     'ATTIC': {
         'NAME': 'Attic',
-        'DESCRIPTION': 'NONE YET',
+        'DESCRIPTION': 'There are a lot of dusty boxes that are pushed to the back. The ceiling is also very low.'
+                       'You notice a knife on top of one of the boxes.',
         'PATHS': {
             'DOWN': 'BED ROOM'
         }
     },
     'FRONT DOOR': {
         'NAME': 'Front Door',
-        'DESCRIPTION': 'NONE YET',
+        'DESCRIPTION': 'There is a dark oak wooden door, the Living Room is right behind you.',
         'PATHS': {
             'NORTH': 'LIVING ROOM',
             'SOUTH': 'PORCH'
@@ -80,7 +82,9 @@ world_map = {
     },
     'PORCH': {
         'NAME': 'Porch',
-        'DESCRIPTION': 'NONE YET',
+        'DESCRIPTION': 'You go outside and the sun is really bright, you close the door behind you. The porch is very'
+                       'small, there is a hammock to the left of you and a grill to the right. There is also a street'
+                       'in front of you and what looks like a park in the distance.',
         'PATHS': {
             'NORTH': 'LIVING ROOM',
             'SOUTH': 'MAIN STREET'
@@ -88,7 +92,8 @@ world_map = {
     },
     'GARAGE': {
         'NAME': 'Garage',
-        'DESCRIPTION': 'NONE YET',
+        'DESCRIPTION': 'The garage is small, there is no car inside. There are empty, dusty shelves'
+                       ' all across the walls.',
         'PATHS': {
             'NORTH': 'PORCH',
             'SOUTH': 'STREET 2'
@@ -96,7 +101,7 @@ world_map = {
     },
     'MAIN STREET': {
         'NAME': 'Street',
-        'DESCRIPTION': 'NONE YET',
+        'DESCRIPTION': 'To the south, there is a park and to the east, more street. To the west... more street.',
         'PATHS': {
             'NORTH': 'PORCH',
             'SOUTH': 'PARK',
@@ -106,7 +111,8 @@ world_map = {
     },
     'STREET 2': {
         'NAME': 'East Street',
-        'DESCRIPTION': 'NONE YET',
+        'DESCRIPTION': 'To the east, it looks like there is a gate to what seems to be a neighborhood, to the west'
+                       '... more street.',
         'PATHS': {
             'NORTH': 'GARAGE',
             'EAST': 'NEIGHBORHOOD GATE',
@@ -115,7 +121,7 @@ world_map = {
     },
     'STREET 3': {
         'NAME': 'West Street',
-        'DESCRIPTION': 'NONE YET',
+        'DESCRIPTION': 'To the west... more street. To the east... more street.',
         'PATHS': {
             'EAST': 'STREET',
             'WEST': 'WEST STREET 2'
@@ -123,7 +129,8 @@ world_map = {
     },
     'STREET 4': {
         'NAME': 'West Street 2',
-        'DESCRIPTION': 'NONE YET',
+        'DESCRIPTION': 'To the east... more street. To the west, it looks like there is a gate to what seems to be'
+                       ' a town.',
         'PATHS': {
             'EAST': 'STREET 3',
             'WEST': 'TOWN GATE'
@@ -131,21 +138,21 @@ world_map = {
     },
     'TOWN GATE': {
         'NAME': 'Town Gate',
-        'DESCRIPTION': 'NONE YET',
+        'DESCRIPTION': 'The gate seems to be locked, with no other way around it. To the east... more street.',
         'PATHS': {
             'EAST': 'WEST STREET 2'
         }
     },
     'NEIGHBORHOOD GATE': {
         'NAME': 'Neighborhood Gate',
-        'DESCRIPTION': 'NONE YET',
+        'DESCRIPTION': 'The gate seems to be locked, with no other way around it. To the west... more street.',
         'PATHS': {
             'WEST': 'STREET 2'
         }
     },
     'PARK': {
         'NAME': 'Park Gate',
-        'DESCRIPTION': 'NONE YET',
+        'DESCRIPTION': 'The park gate is unlocked, to the north, street. To the south, there is an old playground.',
         'PATHS': {
             'NORTH': 'MAIN STREET',
             'SOUTH': 'PLAYGROUND'
@@ -153,17 +160,19 @@ world_map = {
     },
     'PLAYGROUND': {
         'NAME': 'Playground',
-        'DESCRIPTION': 'NONE YET',
+        'DESCRIPTION': 'All of the things on the playground seem to be old. To the north, the park gate. To the south'
+                       ' a gate to a pond. To the east, a building that says restrooms. To the west, another gated,'
+                       'area.',
         'PATHS': {
             'NORTH': 'PARK',
             'SOUTH': 'SOUTH GATED AREA',
             'EAST': 'RESTROOMS',
-            'WEST': ' WEST GATED AREA'
+            'WEST': 'WEST GATED AREA'
         }
     },
     'SOUTH GATED AREA': {
         'NAME': 'South Gated Area',
-        'DESCRIPTION': 'NONE YET',
+        'DESCRIPTION': 'The gate to the pond seems to be locked. To the north, the playground.',
         'PATHS': {
             'NORTH': 'PLAYGROUND',
             'SOUTH': 'POND'
@@ -171,21 +180,23 @@ world_map = {
     },
     'POND': {
         'NAME': 'Pond',
-        'DESCRIPTION': 'NONE YET',
+        'DESCRIPTION': 'There is a pond that is full of algae and the water is really dirty. To the north the '
+                       'playground.',
         'PATHS': {
             'NORTH': 'PLAYGROUND'
         }
     },
     'WEST GATED AREA': {
         'NAME': 'West Gated Area',
-        'DESCRIPTION': 'NONE YET',
+        'DESCRIPTION': 'The gate seems to be locked, there is not really anything to gate up. To the east, the '
+                       'playground',
         'PATHS': {
             'EAST': 'PLAYGROUND'
         }
     },
     'RESTROOMS': {
         'NAME': 'Restrooms',
-        'DESCRIPTION': 'NONE YET',
+        'DESCRIPTION': 'There are dirty old restrooms that stink. To the east, the playground.',
         'PATHS': {
             'EAST': 'PLAYGROUND'
         }
