@@ -66,7 +66,8 @@ playground = Room('Playground', "All of the things on the playground seem to be 
 s_gated_area = Room('South Gated Area', 'The gate to the pond seems to be locked. To the north, the playground.',
                     'playground', 'pond', None, None, None, None, None, None)
 pond = Room('Pond', 'There is a pond that is full of algae and the water is really dirty. To the north the playground.',
-            )
+            'park', None, None, None, None, None, None, None)
+w_gated_area = Room()
 
 
 current_node = spawn
