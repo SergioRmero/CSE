@@ -39,7 +39,10 @@ rest = Room("Restroom", "There is a toilet and a shower at the far back and a si
                         "on the side.", "bed", None, None, None, None, None, None, None)
 attic = Room("Attic", "There are a lot of dusty boxes that are pushed to the back. The ceiling is also very low."
                       "You notice a knife on top of one of the boxes.", None, None, None, None, None, "bed", None, None)
-porch = Room("Porch", "None yet", "front", "street", "garage", None, None, None, None, None)
+porch = Room("Porch", "You go outside and the sun is really bright, you close the door behind you. The porch is very"
+                      "small, there is a hammock to the left of you and a grill to the right. There is also a street"
+                      "in front of you and what looks like a park in the distance.",
+             "front", "street", "garage", None, None, None, None, None)
 garage = Room("Garage", "The garage is small, there is no car inside. There are empty, dusty shelves"
                         " all across the walls.", None, "street2", "porch", None, None, None, None, None)
 street = Room("Street", "You are on the street in front of the house, on the east there is street, and at west there"
@@ -52,22 +55,27 @@ street3 = Room("West Street", "To the west... more street. To "
 street4 = Room("West Street 2", "To the east... more street. To the west, it looks like there is a gate"
                                 " to what "
                                 "seems to be a town", None, None, "street3", "town_gate", None, None, None, None)
-town_gate = Room("Town Gate", "The gate seems to be locked, with no other way around it. To the east... more street."
-                 , None, None, "West Street 2", None, None, None, None, None)
+town_gate = Room("Town Gate", "The gate seems to be locked, with no other way around it. "
+                              "To the east... more street.", None, None, "street4", None, None, None, None, None)
 neighborhood_gate = Room("Neighborhood Gate", "The gate seems to be locked, with no other way around it. "
-                                              "To the west... more street."
-                         , None, None, None, 'East Street', None, None, None, None)
-park = Room("Park", 'The park gate is unlocked, to the north, street. To the south, there is an old playground.'
-            , 'street', 'playground', None, None, None, None, None, None)
+                                              "To the west... "
+                                              "more street.", None, None, None, 'street2', None, None, None, None)
+park = Room("Park", 'The park gate is unlocked, to the north, street. To the south, there is an old'
+                    ' playground.', 'street', 'playground', None, None, None, None, None, None)
 playground = Room('Playground', "All of the things on the playground seem to be "
                                 "old. To the north, the park gate. "
                                 "To the south a gate to a pond. To the east, a building that says restrooms. "
-                                "To the west, another gated area.", 'park', 's_gated_area', 'restrooms', 'w_gated_area')
+                                "To the west, another gated area.", 'park', 's_gated_area', 'restrooms', 'w_gated_area',
+                  None, None, None, None)
 s_gated_area = Room('South Gated Area', 'The gate to the pond seems to be locked. To the north, the playground.',
                     'playground', 'pond', None, None, None, None, None, None)
 pond = Room('Pond', 'There is a pond that is full of algae and the water is really dirty. To the north the playground.',
             'park', None, None, None, None, None, None, None)
-w_gated_area = Room()
+w_gated_area = Room('West Gated Area', 'The gate seems to be locked, there is not really anything to gate up.'
+                                       ' To the east, the playground', None, None, 'playground', None, None, None, None,
+                    None)
+restrooms = Room('Park Restrooms', 'There are dirty old restrooms that stink. To the east, the playground.', None, None,
+                 None, 'playground', None, None, None, None)
 
 
 current_node = spawn

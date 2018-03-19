@@ -4,10 +4,7 @@ word_bank = ['name', 'science', 'election', 'overeat', 'dramatic', 'revoke', 'po
 chosen = random.choice(word_bank)
 lives = 10
 word_list = list(chosen)
-<<<<<<< HEAD
-=======
-print(word_list)
->>>>>>> c0da1d7102cc9a195764fc32dc5cdbaf8d941a62
+
 shown_word = []
 for letter in chosen:
     shown_word.append("*")

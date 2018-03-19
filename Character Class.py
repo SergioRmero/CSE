@@ -4,4 +4,3 @@ class Characters(object):
         self.description = description
         self.health = health
         self.death = death
-
