@@ -1,3 +1,8 @@
+health = 200
+hunger = 150
+thirst = 100
+
+
 class Item(object):
     def __init__(self, name, description, is_picked, room, used):
         self.name = name
@@ -5,6 +10,7 @@ class Item(object):
         self.is_picked = is_picked
         self.room = room
         self.used = used
+
 
 class Weapons(Item):
     def __init__(self, name, description, damage_dealt, is_picked, room, used):
@@ -16,6 +22,9 @@ class Consumable(Item):
     def __init__(self, name, description, hunger_restored, is_picked, room, used):
         self.hunger_restored = hunger_restored
         super(Consumable, self). __init__(name, description, is_picked, room, used)
+
+    def eat(self):
+        print("You ate %s" % self.name)
 
 
 class Wearable(Item):
@@ -40,60 +49,60 @@ class Melee(Weapons):
 
 
 class Crossbow(Ranged):
-    def __init__(self, name, description, damage_dealt):
-        super(Crossbow, self). __init__(name, description, damage_dealt)
+    def __init__(self, name, description, damage_dealt, is_picked, room, used):
+        super(Crossbow, self). __init__(name, description, damage_dealt, is_picked, room, used)
 
 
 class Guns(Ranged):
-    def __init__(self, name, description, damage_dealt):
-        super(Guns, self). __init__(name, description, damage_dealt)
+    def __init__(self, name, description, damage_dealt, is_picked, room, used):
+        super(Guns, self). __init__(name, description, damage_dealt, is_picked, room, used)
 
 
 class Shotgun(Guns):
-    def __init__(self, name, description, damage_dealt):
-        super(Shotgun, self). __init__(name, description, damage_dealt)
+    def __init__(self, name, description, damage_dealt, is_picked, room, used):
+        super(Shotgun, self). __init__(name, description, damage_dealt, is_picked, room, used)
 
 
 class AssaultRifle(Guns):
-    def __init__(self, name, description, damage_dealt):
-        super(AssaultRifle, self). __init__(name, description, damage_dealt)
+    def __init__(self, name, description, damage_dealt, is_picked, room, used):
+        super(AssaultRifle, self). __init__(name, description, damage_dealt, is_picked, room, used)
 
 
 class SemiAutoSniper(Guns):
-    def __init__(self, name, description, damage_dealt):
-        super(SemiAutoSniper, self). __init__(name, description, damage_dealt)
+    def __init__(self, name, description, damage_dealt, is_picked, room, used):
+        super(SemiAutoSniper, self). __init__(name, description, damage_dealt, is_picked, room, used)
 
 
 class Axe(Melee):
-    def __init__(self, name, description, damage_dealt):
-        super(Axe, self). __init__(name, description, damage_dealt)
+    def __init__(self, name, description, damage_dealt, is_picked, room, used):
+        super(Axe, self). __init__(name, description, damage_dealt, is_picked, room, used)
 
 
 class Knife(Melee):
-    def __init__(self, name, description, damage_dealt):
-        super(Knife, self). __init__(name, description, damage_dealt)
+    def __init__(self, name, description, damage_dealt, is_picked, room, used):
+        super(Knife, self). __init__(name, description, damage_dealt, is_picked, room, used)
 
 
 class Backpack(Wearable):
-    def __init__(self, name, description, storage):
-        super(Backpack, self). __init__(name, description, storage)
+    def __init__(self, name, description, storage, is_picked, room, used):
+        super(Backpack, self). __init__(name, description, storage, is_picked, room, used)
 
 
 class Food(Consumable):
-    def __init__(self, name, description, hunger_restored):
-        super(Food, self). __init__(name, description, hunger_restored)
+    def __init__(self, name, description, hunger_restored, is_picked, room, used):
+        super(Food, self). __init__(name, description, hunger_restored, is_picked, room, used)
 
 
 class Healing(Consumable):
-    def __init__(self, name, description, health_restored):
-        super(Healing, self). __init__(name, description, health_restored)
+    def __init__(self, name, description, health_restored, is_picked, room, used):
+        super(Healing, self). __init__(name, description, health_restored, is_picked, room, used)
 
 
 class Bandages(Healing):
-    def __init__(self, name, description, health_restored):
-        super(Bandages, self). __init__(name, description, health_restored)
+    def __init__(self, name, description, health_restored, is_picked, room, used):
+        super(Bandages, self). __init__(name, description, health_restored, is_picked, room, used)
 
 
 class HealingPotion(Healing):
-    def __init__(self, name, description, health_restored):
-        super(HealingPotion, self). __init__(name, description, health_restored)
+    def __init__(self, name, description, health_restored, is_picked, room, used):
+        super(HealingPotion, self). __init__(name, description, health_restored, is_picked, room, used)
