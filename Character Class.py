@@ -1,10 +1,16 @@
 class Characters(object):
-    def __init__(self, name, description, health, death):
+    def __init__(self, name, description, health):
         self.name = name
         self.description = description
         self.health = health
-        self.death = death
 
 
 class User(Characters):
-    super()
+    def __init__(self, name, description, health, inventory, position):
+        self.space = inventory
+        self.pos = position
+        super(User, self). __init__(name, description, health)
+
+    def damage(self, amount):
+        self.health -= amount
+        print()
