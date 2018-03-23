@@ -13,4 +13,7 @@ class User(Characters):
 
     def damage(self, amount):
         self.health -= amount
-        print()
+        print("You took %s damage" % self.health)
+        
+    def take(self, item):
+        print("You took %s", item)

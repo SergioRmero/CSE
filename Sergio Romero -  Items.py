@@ -1,6 +1,5 @@
 health = 200
 hunger = 150
-thirst = 100
 
 
 class Item(object):
@@ -12,6 +11,7 @@ class Item(object):
         self.used = used
 
     def drop(self):
+        self.is_picked = False
         print("You drop %s" % self.name)
 
 
@@ -45,6 +45,9 @@ class Wearable(Item):
 class KeyToPond(Item):
     def __init__(self, name, description, is_picked, room, used):
         super(KeyToPond, self). __init__(name, description, is_picked, room, used)
+
+    def use(self):
+        print("You used %s to open Gate to Pond" % self.name)
 
 
 class Ranged(Weapons):
@@ -83,15 +86,33 @@ class Shotgun(Guns):
     def __init__(self, name, description, damage_dealt, is_picked, room, used):
         super(Shotgun, self). __init__(name, description, damage_dealt, is_picked, room, used)
 
+    def shoot(self):
+        print("You shoot with %s" % self.name)
+
+    def drop(self):
+        print("You drop %s" % self.name)
+
 
 class AssaultRifle(Guns):
     def __init__(self, name, description, damage_dealt, is_picked, room, used):
         super(AssaultRifle, self). __init__(name, description, damage_dealt, is_picked, room, used)
 
+    def shoot(self):
+        print("You shoot with %s" % self.name)
+
+    def drop(self):
+        print("You drop %s" % self.name)
+
 
 class SemiAutoSniper(Guns):
     def __init__(self, name, description, damage_dealt, is_picked, room, used):
         super(SemiAutoSniper, self). __init__(name, description, damage_dealt, is_picked, room, used)
+
+    def shoot(self):
+        print("You shoot with %s" % self.name)
+
+    def drop(self):
+        print("You drop %s" % self.name)
 
 
 class Axe(Melee):
@@ -108,6 +129,12 @@ class Axe(Melee):
 class Knife(Melee):
     def __init__(self, name, description, damage_dealt, is_picked, room, used):
         super(Knife, self). __init__(name, description, damage_dealt, is_picked, room, used)
+
+    def attack(self):
+        print("You attack with %s" % self.name)
+
+    def drop(self):
+        print("You drop %s" % self.name)
 
 
 class Backpack(Wearable):
@@ -129,14 +156,28 @@ class Food(Consumable):
 
 class Healing(Consumable):
     def __init__(self, name, description, health_restored, is_picked, room, used):
+        self.health = 100
         super(Healing, self). __init__(name, description, health_restored, is_picked, room, used)
+
+    def heal(self, heal_amount):
+        self.health -= heal_amount
 
 
 class Bandages(Healing):
     def __init__(self, name, description, health_restored, is_picked, room, used):
+        self.health = 100
         super(Bandages, self). __init__(name, description, health_restored, is_picked, room, used)
+
+    def heal(self, heal_amount):
+        self.health -= heal_amount
+        print("You healed 10 hp with %s" % self.name)
 
 
 class HealingPotion(Healing):
     def __init__(self, name, description, health_restored, is_picked, room, used):
+        self.health = 100
         super(HealingPotion, self). __init__(name, description, health_restored, is_picked, room, used)
+
+    def heal(self, heal_amount):
+        self.health -= heal_amount
+        print("You healed 25 hp with %s" % self.name)
