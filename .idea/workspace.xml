@@ -14,28 +14,38 @@
       <file leaf-file-name="Sergio Romero -  Items.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Sergio Romero -  Items.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="17" column="20" lean-forward="true" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
+            <state relative-caret-position="-1167">
+              <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Inheritance Notes.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Inheritance Notes.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="124">
-              <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Character Class.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Character Class.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Character Class.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="8" lean-forward="true" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
+            <state relative-caret-position="125">
+              <caret line="17" column="25" lean-forward="true" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Sergio Romero- World Map OOP.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Sergio Romero- World Map OOP.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="24" lean-forward="false" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CYOA.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/CYOA.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="183">
+              <caret line="202" column="25" lean-forward="false" selection-start-line="202" selection-start-column="25" selection-end-line="202" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -74,10 +84,11 @@
         <option value="$PROJECT_DIR$/Sergio Romero- Hangman.py" />
         <option value="$PROJECT_DIR$/Sergio Romero -  Items.py" />
         <option value="$PROJECT_DIR$/Character Class.py" />
+        <option value="$PROJECT_DIR$/CYOA.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-7" />
     <option name="width" value="697" />
     <option name="height" value="735" />
@@ -98,8 +109,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -135,7 +146,24 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Sergio Romero -  Items">
+  <component name="RunManager" selected="Python.CYOA">
+    <configuration name="CYOA" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="CSE" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/CYOA.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+    </configuration>
     <configuration name="Notes" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -238,39 +266,22 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
-    <configuration name="programmer" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="CSE" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/programmer.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-    </configuration>
     <list size="7">
       <item index="0" class="java.lang.String" itemvalue="Python.Notes" />
       <item index="1" class="java.lang.String" itemvalue="Python.Warmups" />
       <item index="2" class="java.lang.String" itemvalue="Python.Sergio Romero- Hangman" />
       <item index="3" class="java.lang.String" itemvalue="Python.Sergio Romero- World Map OOP" />
       <item index="4" class="java.lang.String" itemvalue="Python.Sergio Romero - Dictionary Worldmap" />
-      <item index="5" class="java.lang.String" itemvalue="Python.programmer" />
-      <item index="6" class="java.lang.String" itemvalue="Python.Sergio Romero -  Items" />
+      <item index="5" class="java.lang.String" itemvalue="Python.Sergio Romero -  Items" />
+      <item index="6" class="java.lang.String" itemvalue="Python.CYOA" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.Sergio Romero -  Items" />
-        <item index="1" class="java.lang.String" itemvalue="Python.Sergio Romero- Hangman" />
-        <item index="2" class="java.lang.String" itemvalue="Python.Sergio Romero- World Map OOP" />
-        <item index="3" class="java.lang.String" itemvalue="Python.Sergio Romero - Dictionary Worldmap" />
-        <item index="4" class="java.lang.String" itemvalue="Python.programmer" />
+        <item index="0" class="java.lang.String" itemvalue="Python.CYOA" />
+        <item index="1" class="java.lang.String" itemvalue="Python.Sergio Romero -  Items" />
+        <item index="2" class="java.lang.String" itemvalue="Python.Sergio Romero- Hangman" />
+        <item index="3" class="java.lang.String" itemvalue="Python.Sergio Romero- World Map OOP" />
+        <item index="4" class="java.lang.String" itemvalue="Python.Sergio Romero - Dictionary Worldmap" />
       </list>
     </recent_temporary>
   </component>
@@ -297,8 +308,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20204978" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -330,13 +340,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Sergio Romero - Guess Game.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="14" lean-forward="false" selection-start-line="21" selection-start-column="14" selection-end-line="21" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Sergio Romero-Lucky_Sevens.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -627,20 +630,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/programmer.py" />
-    <entry file="file://$PROJECT_DIR$/Sergio Romero - Dictionary Worldmap.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="86" column="83" lean-forward="false" selection-start-line="86" selection-start-column="24" selection-end-line="86" selection-end-column="83" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Sergio Romero- World Map OOP.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="986">
-          <caret line="58" column="74" lean-forward="false" selection-start-line="58" selection-start-column="74" selection-end-line="58" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Sergio Romero- Hangman.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
@@ -652,22 +641,45 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="124">
           <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sergio Romero- World Map OOP.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="24" lean-forward="false" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Sergio Romero -  Items.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="17" column="20" lean-forward="true" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
+        <state relative-caret-position="-1167">
+          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Character Class.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="8" lean-forward="true" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
+        <state relative-caret-position="125">
+          <caret line="17" column="25" lean-forward="true" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sergio Romero - Dictionary Worldmap.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="217" column="50" lean-forward="true" selection-start-line="217" selection-start-column="50" selection-end-line="217" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CYOA.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="202" column="25" lean-forward="false" selection-start-line="202" selection-start-column="25" selection-end-line="202" selection-end-column="25" />
           <folding />
         </state>
       </provider>
