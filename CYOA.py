@@ -211,6 +211,7 @@ class Enemy(Characters):
         super(Enemy, self). __init__(name, description, health)
 
     def attack(self, damage):
+        self.health -= damage
         print("%s attacked you" % self.name)
 
     def death(self):
@@ -218,7 +219,7 @@ class Enemy(Characters):
 
 
 class Room(object):
-    def __init__(self, name, description, north, south, east, west, up, down, northeast, southeast):
+    def __init__(self, name, description, north, south, east, west, up, down, northeast, southeast, items):
         self.name = name
         self.description = description
         self.north = north
@@ -229,6 +230,7 @@ class Room(object):
         self.down = down
         self.northeast = northeast
         self.southeast = southeast
+        self.items = items
 
     def move(self, direction):
         global current_node
@@ -241,7 +243,8 @@ spawn = Room("Spawn", 'You are in an empty room with the ceiling light dimly lit
 west = Room("West Room", "There is a door on the east side of the room and a trap door on the floor that seems to be"
             "locked", "Spawn", None, "living", None, None, "secret", None, None)
 secret = Room("Secret Room", "This is a dark room with what seems to"
-                             "be loaded with weapons.", None, None, None, None, "west", None, None, None)
+                             "be loaded with weapons.", None, None, None, None, "west", None, None, None, "shotgun"
+                            "Assault Rifle" ' ')
 living = Room('Living Room', 'There are two couches in the middle of the room and a TV with the screen facing the '
                              'couches. There is a door at the Northeast corner of the room and a hallway leading to'
                              'the front door.', None, "front", None, "west", None, None, "kitchen", None)
