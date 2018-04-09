@@ -218,6 +218,11 @@ class Enemy(Characters):
         print('%s has been killed.' % self.name)
 
 
+KeyToPond = Item('Key to Pond', 'This is a key it says pond on the side of it.', False, 'restrooms', False)
+
+Food = Item('Food', 'There is food in a bag, the bag also feels warm.', False, 'restrooms', False)
+
+
 class Room(object):
     def __init__(self, name, description, north, south, east, west, up, down, northeast, southeast, items=None):
         if items is None:
@@ -241,36 +246,36 @@ class Room(object):
 
 # north, south, east, west, up , down, northeast, southeast
 spawn = Room("Spawn", 'You are in an empty room with the ceiling light dimly lit.'
-             'There is an open door at the south side of the room',
-             None, "west", None, None, None, None, None, None, None)
+             ' There is an open door at the south side of the room',
+             None, "west", None, None, None, None, None, None, [])
 west = Room("West Room", "There is a door on the east side of the room and a trap door on the floor that seems to be"
-            "locked", "Spawn", None, "living", None, None, "secret", None, None, None)
+            " locked", "spawn", None, "living", None, None, "secret", None, None, [])
 secret = Room("Secret Room", "This is a dark room with what seems to"
-                             "be loaded with weapons.",
+                             " be loaded with weapons.",
               None, None, None, None, "west", None, None, None, ["Assault Rifle", 'Backpack'])
 living = Room('Living Room', 'There are two couches in the middle of the room and a TV with the screen facing the '
                              'couches. There is a door at the Northeast corner of the room and a hallway leading to'
-                             'the front door.', None, "front", None, "west", None, None, "kitchen", None, [])
+                             ' the front door.', None, "front", None, "west", None, None, "kitchen", None, [])
 front = Room("Front Door", "There is a dark oak wooden door, the "
                            "Living Room is right behind you.", "living", "porch",
              None, None, None, None, None, None, [])
 kitchen = Room("Kitchen", "There is a table in the middle of the room with chairs surrounding it."
                           " There is also food sitting on the counter. There is a door to"
-               "the Southeast corner of the room and another door leading back to the Living Room to the south", None,
+               " the Southeast corner of the room and another door leading back to the Living Room to the south", None,
                "living", None, None, None, None, None, "bed", ['Food'])
 bed = Room("Bed Room", "There is a bed next the side wall, there is a night stand next to it and a desk on the other"
-                       "side of the room with a window.", "kitchen",
+                       " side of the room with a window.", "kitchen",
            "rest", None, "bed2", "attic", None, None, None, ['Healing Potion'])
 bed2 = Room("Bed Room 2", "It looks the same as the other bedroom except there"
                           " is no window.", None, None, "bed", None, None, None, None, None, ['Knife'])
 rest = Room("Restroom", "There is a toilet and a shower at the far back and a sink with a mirror "
                         "on the side.", "bed", None, None, None, None, None, None, None, ["Bandages"])
 attic = Room("Attic", "There are a lot of dusty boxes that are pushed to the back. The ceiling is also very low."
-                      "You notice a knife on top of one of the boxes.",
+                      " You notice a knife on top of one of the boxes.",
              None, None, None, None, None, "bed", None, None, ['Crossbow'])
 porch = Room("Porch", "You go outside and the sun is really bright, you close the door behind you. The porch is very"
-                      "small, there is a hammock to the left of you and a grill to the right. There is also a street"
-                      "in front of you and what looks like a park in the distance.",
+                      " small, there is a hammock to the left of you and a grill to the right. There is also a street"
+                      " in front of you and what looks like a park in the distance.",
              "front", "street", "garage", None, None, None, None, None, [])
 garage = Room("Garage", "The garage is small, there is no car inside. There are empty, dusty shelves"
                         " all across the walls.", None, "street2", "porch",
@@ -279,7 +284,7 @@ street = Room("Street", "You are on the street in front of the house, on the eas
                         " is more street", "porch", "park", "street2", "street3", None, None, None, None, [])
 street2 = Room("East Street", "To the east, it looks like there is a gate to what seems to be a"
                               " neighborhood, to the west... more"
-                              "street", "garage", None, "neighborhood_gate", "street", None, None, None, None, [])
+                              " street", "garage", None, "neighborhood_gate", "street", None, None, None, None, [])
 street3 = Room("West Street", "To the west... more street. To "
                               "the east... more street", None, None, "street", "street4", None, None, None, None, [])
 street4 = Room("West Street 2", "To the east... more street. To the west, it looks like there is a gate"
@@ -300,13 +305,13 @@ playground = Room('Playground', "All of the things on the playground seem to be 
 s_gated_area = Room('South Gated Area', 'The gate to the pond seems to be locked. To the north, the playground.',
                     'playground', 'pond', None, None, None, None, None, None, [])
 pond = Room('Pond', 'There is a pond that is full of algae and the water is really dirty. To the north the playground.',
-            'park', None, None, None, None, None, None, None, None)
+            'playground', None, None, None, None, None, None, None, None)
 w_gated_area = Room('West Gated Area', 'The gate seems to be locked, there is not really anything to gate up.'
                                        ' To the east, the playground', None, None, 'playground', None, None, None, None,
                     None, [])
 restrooms = Room('Park Restrooms', 'There are dirty old restrooms that stink. Inside there is ... Food?'
                                    ' To the east, the playground.', None, None,
-                 None, 'playground', None, None, None, None, ['Food'])
+                 None, 'playground', None, None, None, None, ['Food', 'KeyToPond'])
 
 
 current_node = spawn
