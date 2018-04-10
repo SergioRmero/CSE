@@ -218,9 +218,6 @@ class Enemy(Characters):
         print('%s has been killed.' % self.name)
 
 
-KeyToPond = Item('Key to Pond', 'This is a key it says pond on the side of it.', False, 'restrooms', False)
-
-Food = Item('Food', 'There is food in a bag, the bag also feels warm.', False, 'restrooms', False)
 
 
 class Room(object):
@@ -242,6 +239,12 @@ class Room(object):
     def move(self, direction):
         global current_node
         current_node = globals()[getattr(self, direction)]
+
+Key_To_Pond = Item('Key to Pond', 'This is a key it says pond on the side of it.', False, 'restrooms', False)
+crossbow = Ranged('Crossbow', 'It looks like a crossbow, when it fires the arrow goes very far',
+                      50, False, 'secret', False)
+
+food = Food('Food', 'There is food in a bag, the bag also feels warm.', 25, False, 'restrooms', False)
 
 
 # north, south, east, west, up , down, northeast, southeast
@@ -296,7 +299,7 @@ neighborhood_gate = Room("Neighborhood Gate", "The gate seems to be locked, with
                                               "To the west... "
                                               "more street.", None, None, None, 'street2', None, None, None, None, [])
 park = Room("Park", 'The park gate is unlocked, to the north, street. To the south, there is an old'
-                    ' playground.', 'street', 'playground', None, None, None, None, None, None, [])
+                    ' playground.', 'street', 'playground', None, None, None, None, None, None, ['axe'])
 playground = Room('Playground', "All of the things on the playground seem to be "
                                 "old. To the north, the park gate. "
                                 "To the south a gate to a pond. To the east, a building that says restrooms. "
