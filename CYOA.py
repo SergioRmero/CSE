@@ -11,8 +11,18 @@ class Item(object):
         self.used = used
 
     def drop(self):
-        self.is_picked = False
-        print("You drop %s" % self.name)
+        if self.is_picked:
+            self.is_picked = False
+            print("You drop %s" % self.name)
+        else:
+            print("You can't drop that.")
+
+    def pick(self):
+        if not self.is_picked:
+            self.is_picked = True
+            print("You picked up %s" % self.name)
+        else:
+            print("You can't pick that up.")
 
 
 class Weapons(Item):
@@ -218,8 +228,6 @@ class Enemy(Characters):
         print('%s has been killed.' % self.name)
 
 
-
-
 class Room(object):
     def __init__(self, name, description, north, south, east, west, up, down, northeast, southeast, items=None):
         if items is None:
@@ -240,11 +248,21 @@ class Room(object):
         global current_node
         current_node = globals()[getattr(self, direction)]
 
-Key_To_Pond = Item('Key to Pond', 'This is a key it says pond on the side of it.', False, 'restrooms', False)
-crossbow = Ranged('Crossbow', 'It looks like a crossbow, when it fires the arrow goes very far',
-                      50, False, 'secret', False)
 
+Key_To_Pond = Item('Key to Pond', 'This is a key it says pond on the side of it.', False, 'restrooms', False)
+crossbow = Crossbow('Crossbow', 'It looks like a crossbow, when it fires the arrow goes very far', 50, False,
+                    'secret', False)
+shotgun = Shotgun('Shotgun', 'A shotgun, deals the most damage out of all weapons, more sufficient in close range', 70,
+                  False, 'secret', False)
+assault_rifle = AssaultRifle('Assault Rifle', 'An assault rifle', 35, False, 'secret', False)
+semi_auto_snipe = SemiAutoSniper('Semi Auto Sniper', 'A sniper, this does more damage than the'
+                                                     ' crossbow', 75, False, 'secret', False)
+axe = Axe('Axe', 'An axe, does not do a lot of damage, it looks like it was used to chop wood', 15, False, 'Pond',
+          False)
+knife = Knife('Knife', 'A knife, does the least damage out of all the weapons', 10, False, 'attic', False)
+backpack = Backpack('Backpack', 'A backpack, you could probably put some items in here', 10, False, 'secret', False)
 food = Food('Food', 'There is food in a bag, the bag also feels warm.', 25, False, 'restrooms', False)
+bandages = Bandages('Bandages', 'Bandages, these heal you when health is low', 30, False, 'rest', False)
 
 
 # north, south, east, west, up , down, northeast, southeast
@@ -255,7 +273,8 @@ west = Room("West Room", "There is a door on the east side of the room and a tra
             " locked", "spawn", None, "living", None, None, "secret", None, None, [])
 secret = Room("Secret Room", "This is a dark room with what seems to"
                              " be loaded with weapons.",
-              None, None, None, None, "west", None, None, None, ["Assault Rifle", 'Backpack'])
+              None, None, None, None, "west", None, None, None, ["Assault Rifle",
+                                                                 'Backpack', 'Shotgun', 'SemiAutoSniper'])
 living = Room('Living Room', 'There are two couches in the middle of the room and a TV with the screen facing the '
                              'couches. There is a door at the Northeast corner of the room and a hallway leading to'
                              ' the front door.', None, "front", None, "west", None, None, "kitchen", None, [])
@@ -308,7 +327,7 @@ playground = Room('Playground', "All of the things on the playground seem to be 
 s_gated_area = Room('South Gated Area', 'The gate to the pond seems to be locked. To the north, the playground.',
                     'playground', 'pond', None, None, None, None, None, None, [])
 pond = Room('Pond', 'There is a pond that is full of algae and the water is really dirty. To the north the playground.',
-            'playground', None, None, None, None, None, None, None, None)
+            'playground', None, None, None, None, None, None, None, ['Axe'])
 w_gated_area = Room('West Gated Area', 'The gate seems to be locked, there is not really anything to gate up.'
                                        ' To the east, the playground', None, None, 'playground', None, None, None, None,
                     None, [])
@@ -332,11 +351,16 @@ while True:
     elif command == 'pew pew':
         print('The house blew up and you died')
         quit(0)
+    elif command == "look":
+        print(current_node.name, '\n', current_node.description)
+    elif command == 'yote':
+        quit("past tense of yeet")
+    else:
+        print("Command not recognized")
+
     if command in directions:
         try:
             current_node.move(command)
             print(current_node.name + "\n" + current_node.description)
         except KeyError:
             print("You cannot go this way")
-    else:
-        print("Command not recognized")
