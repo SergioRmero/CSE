@@ -201,9 +201,8 @@ class Characters(object):
 
 
 class User(Characters):
-    def __init__(self, name, description, health, inventory, position):
+    def __init__(self, name, description, health, inventory):
         self.space = inventory
-        self.pos = position
         super(User, self). __init__(name, description, health)
 
     def damage(self, amount):
@@ -260,9 +259,15 @@ semi_auto_snipe = SemiAutoSniper('Semi Auto Sniper', 'A sniper, this does more d
 axe = Axe('Axe', 'An axe, does not do a lot of damage, it looks like it was used to chop wood', 15, False, 'Pond',
           False)
 knife = Knife('Knife', 'A knife, does the least damage out of all the weapons', 10, False, 'attic', False)
-backpack = Backpack('Backpack', 'A backpack, you could probably put some items in here', 10, False, 'secret', False)
-food = Food('Food', 'There is food in a bag, the bag also feels warm.', 25, False, 'restrooms', False)
-bandages = Bandages('Bandages', 'Bandages, these heal you when health is low', 30, False, 'rest', False)
+backpack = Backpack('Backpack', 'A backpack, you could probably put some items in here.', 10, False, 'secret', False)
+food = Food('Food', 'There is food in a bag, the bag also feels warm. This restores 25 hunger',
+            25, False, 'restrooms', False)
+bandages = Bandages('Bandages', 'Bandages, these restore 30 health to you', 30, False, 'rest', False)
+healing_pot = HealingPotion('Healing Potion', 'This potion restores 50 health to you.',
+                            50, False, ['garage', 'bed'], False)
+user = User('Player', 'You are an average person not knowing a lot about what is around him.', 100, 10)
+enemy = Enemy('Zombie', 'One of many zombies', 85, ['pond', 'street', 'street2', 'street3', 'street4', 'park',
+                                                    'playground', 's_gated_area', 'w_gated_area'], 'food')
 
 
 # north, south, east, west, up , down, northeast, southeast
@@ -353,8 +358,6 @@ while True:
         quit(0)
     elif command == "look":
         print(current_node.name, '\n', current_node.description)
-    elif command == 'yote':
-        quit("past tense of yeet")
     else:
         print("Command not recognized")
 
