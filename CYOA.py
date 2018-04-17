@@ -1,7 +1,3 @@
-health = 200
-hunger = 150
-
-
 class Item(object):
     def __init__(self, name, description, is_picked, room, used):
         self.name = name
@@ -90,6 +86,14 @@ class Guns(Ranged):
 
     def shoot(self):
         print("You shoot with %s" % self.name)
+
+
+class Pistol(Guns):
+    def __init__(self, name, description, damage_dealt, is_picked, room, used):
+        super(Guns, self). __init__(name, description, damage_dealt, is_picked, room, used)
+
+    def shoot(self):
+        print('You shoot with %s' % self.name)
 
 
 class Shotgun(Guns):
@@ -228,9 +232,7 @@ class Enemy(Characters):
 
 
 class Room(object):
-    def __init__(self, name, description, north, south, east, west, up, down, northeast, southeast, items=None):
-        if items is None:
-            items = []
+    def __init__(self, name, description, north, south, east, west, up, down, northeast, southeast):
         self.name = name
         self.description = description
         self.north = north
@@ -241,109 +243,113 @@ class Room(object):
         self.down = down
         self.northeast = northeast
         self.southeast = southeast
-        self.items = items
 
     def move(self, direction):
         global current_node
         current_node = globals()[getattr(self, direction)]
 
 
-Key_To_Pond = Item('Key to Pond', 'This is a key it says pond on the side of it.', False, 'restrooms', False)
-crossbow = Crossbow('Crossbow', 'It looks like a crossbow, when it fires the arrow goes very far', 50, False,
-                    'secret', False)
-shotgun = Shotgun('Shotgun', 'A shotgun, deals the most damage out of all weapons, more sufficient in close range', 70,
-                  False, 'secret', False)
-assault_rifle = AssaultRifle('Assault Rifle', 'An assault rifle', 35, False, 'secret', False)
-semi_auto_snipe = SemiAutoSniper('Semi Auto Sniper', 'A sniper, this does more damage than the'
-                                                     ' crossbow', 75, False, 'secret', False)
-axe = Axe('Axe', 'An axe, does not do a lot of damage, it looks like it was used to chop wood', 15, False, 'Pond',
-          False)
-knife = Knife('Knife', 'A knife, does the least damage out of all the weapons', 10, False, 'attic', False)
-backpack = Backpack('Backpack', 'A backpack, you could probably put some items in here.', 10, False, 'secret', False)
-food = Food('Food', 'There is food in a bag, the bag also feels warm. This restores 25 hunger',
-            25, False, 'restrooms', False)
-bandages = Bandages('Bandages', 'Bandages, these restore 30 health to you', 30, False, 'rest', False)
-healing_pot = HealingPotion('Healing Potion', 'This potion restores 50 health to you.',
-                            50, False, ['garage', 'bed'], False)
-user = User('Player', 'You are an average person not knowing a lot about what is around him.', 100, 10)
-enemy = Enemy('Zombie', 'One of many zombies', 85, ['pond', 'street', 'street2', 'street3', 'street4', 'park',
-                                                    'playground', 's_gated_area', 'w_gated_area'], 'food')
-
-
 # north, south, east, west, up , down, northeast, southeast
 spawn = Room("Spawn", 'You are in an empty room with the ceiling light dimly lit.'
              ' There is an open door at the south side of the room',
-             None, "west", None, None, None, None, None, None, [])
+             None, "west", None, None, None, None, None, None)
 west = Room("West Room", "There is a door on the east side of the room and a trap door on the floor that seems to be"
-            " locked", "spawn", None, "living", None, None, "secret", None, None, [])
+            " locked", "spawn", None, "living", None, None, "secret", None, None)
 secret = Room("Secret Room", "This is a dark room with what seems to"
                              " be loaded with weapons.",
-              None, None, None, None, "west", None, None, None, ["Assault Rifle",
-                                                                 'Backpack', 'Shotgun', 'SemiAutoSniper'])
+              None, None, None, None, "west", None, None, None)
 living = Room('Living Room', 'There are two couches in the middle of the room and a TV with the screen facing the '
                              'couches. There is a door at the Northeast corner of the room and a hallway leading to'
-                             ' the front door.', None, "front", None, "west", None, None, "kitchen", None, [])
+                             ' the front door.', None, "front", None, "west", None, None, "kitchen", None)
 front = Room("Front Door", "There is a dark oak wooden door, the "
                            "Living Room is right behind you.", "living", "porch",
-             None, None, None, None, None, None, [])
+             None, None, None, None, None, None)
 kitchen = Room("Kitchen", "There is a table in the middle of the room with chairs surrounding it."
                           " There is also food sitting on the counter. There is a door to"
                " the Southeast corner of the room and another door leading back to the Living Room to the south", None,
-               "living", None, None, None, None, None, "bed", ['Food'])
+               "living", None, None, None, None, None, "bed")
 bed = Room("Bed Room", "There is a bed next the side wall, there is a night stand next to it and a desk on the other"
-                       " side of the room with a window.", "kitchen",
-           "rest", None, "bed2", "attic", None, None, None, ['Healing Potion'])
+                       " side of the room with a window. There is a bottle with red liquid and a pistol on the desk",
+           "kitchen", "rest", None, "bed2", "attic", None, None, None)
 bed2 = Room("Bed Room 2", "It looks the same as the other bedroom except there"
-                          " is no window.", None, None, "bed", None, None, None, None, None, ['Knife'])
+                          " is no window.", None, None, "bed", None, None, None, None, None)
 rest = Room("Restroom", "There is a toilet and a shower at the far back and a sink with a mirror "
-                        "on the side.", "bed", None, None, None, None, None, None, None, ["Bandages"])
+                        "on the side.", "bed", None, None, None, None, None, None, None)
 attic = Room("Attic", "There are a lot of dusty boxes that are pushed to the back. The ceiling is also very low."
                       " You notice a knife on top of one of the boxes.",
-             None, None, None, None, None, "bed", None, None, ['Crossbow'])
+             None, None, None, None, None, "bed", None, None)
 porch = Room("Porch", "You go outside and the sun is really bright, you close the door behind you. The porch is very"
                       " small, there is a hammock to the left of you and a grill to the right. There is also a street"
                       " in front of you and what looks like a park in the distance.",
-             "front", "street", "garage", None, None, None, None, None, [])
+             "front", "street", "garage", None, None, None, None, None)
 garage = Room("Garage", "The garage is small, there is no car inside. There are empty, dusty shelves"
                         " all across the walls.", None, "street2", "porch",
-              None, None, None, None, None, ['Shotgun', 'Healing Potion'])
+              None, None, None, None, None)
 street = Room("Street", "You are on the street in front of the house, on the east there is street, and at west there"
-                        " is more street", "porch", "park", "street2", "street3", None, None, None, None, [])
+                        " is more street", "porch", "park", "street2", "street3", None, None, None, None)
 street2 = Room("East Street", "To the east, it looks like there is a gate to what seems to be a"
                               " neighborhood, to the west... more"
-                              " street", "garage", None, "neighborhood_gate", "street", None, None, None, None, [])
-street3 = Room("West Street", "To the west... more street. To "
-                              "the east... more street", None, None, "street", "street4", None, None, None, None, [])
+                              " street", "garage", None, "neighborhood_gate", "street", None, None, None, None)
+street3 = Room("West Street", "To the west... more street. To" 
+                              "the east... more street", None, None, "street", "street4", None, None, None, None)
 street4 = Room("West Street 2", "To the east... more street. To the west, it looks like there is a gate"
                                 " to what "
-                                "seems to be a town", None, None, "street3", "town_gate", None, None, None, None, [])
+                                "seems to be a town", None, None, "street3", "town_gate", None, None, None, None)
 town_gate = Room("Town Gate", "The gate seems to be locked, with no other way around it. "
-                              "To the east... more street.", None, None, "street4", None, None, None, None, None, [])
+                              "To the east... more street.", None, None, "street4", None, None, None, None, None)
 neighborhood_gate = Room("Neighborhood Gate", "The gate seems to be locked, with no other way around it. "
                                               "To the west... "
-                                              "more street.", None, None, None, 'street2', None, None, None, None, [])
+                                              "more street.", None, None, None, 'street2', None, None, None, None)
 park = Room("Park", 'The park gate is unlocked, to the north, street. To the south, there is an old'
-                    ' playground.', 'street', 'playground', None, None, None, None, None, None, ['axe'])
+                    ' playground.', 'street', 'playground', None, None, None, None, None, None)
 playground = Room('Playground', "All of the things on the playground seem to be "
                                 "old. To the north, the park gate. "
                                 "To the south a gate to a pond. To the east, a building that says restrooms. "
                                 "To the west, another gated area.", 'park', 's_gated_area', 'restrooms', 'w_gated_area',
-                  None, None, None, None, [])
+                  None, None, None, None)
 s_gated_area = Room('South Gated Area', 'The gate to the pond seems to be locked. To the north, the playground.',
-                    'playground', 'pond', None, None, None, None, None, None, [])
+                    'playground', 'pond', None, None, None, None, None, None)
 pond = Room('Pond', 'There is a pond that is full of algae and the water is really dirty. To the north the playground.',
-            'playground', None, None, None, None, None, None, None, ['Axe'])
+            'playground', None, None, None, None, None, None, None)
 w_gated_area = Room('West Gated Area', 'The gate seems to be locked, there is not really anything to gate up.'
                                        ' To the east, the playground', None, None, 'playground', None, None, None, None,
-                    None, [])
+                    None)
 restrooms = Room('Park Restrooms', 'There are dirty old restrooms that stink. Inside there is ... Food?'
                                    ' To the east, the playground.', None, None,
-                 None, 'playground', None, None, None, None, ['Food', 'KeyToPond'])
+                 None, 'playground', None, None, None, None)
 
+Key_To_Pond = Item('Key to Pond', 'You picked up a key to the pond', False, restrooms, False)
+crossbow = Crossbow('Crossbow', 'It looks like a crossbow, when it fires the arrow goes very far', 50, False,
+                    secret, False)
+pistol = Pistol('Pistol', 'You picked up a pistol.', 15, False, bed, False)
+shotgun = Shotgun('Shotgun', 'You picked up a shotgun, is more effective at close range.', 70,
+                  False, secret, False)
+assault_rifle = AssaultRifle('Assault Rifle', 'You picked up an assault rifle.', 35, False, secret, False)
+semi_auto_snipe = SemiAutoSniper('Semi Auto Sniper', 'A sniper, this does more damage than the'
+                                                     ' crossbow', 75, False, secret, False)
+axe = Axe('Axe', 'You picked up an axe, does not do a lot of damage.', 15, False, 'Pond',
+          False)
+knife = Knife('Knife', 'You picked up a knife, does the least damage out of all the weapons', 10, False, attic, False)
+backpack = Backpack('Backpack', 'You picked up a backpack, you could probably put some items in here.', 10, False,
+                    secret, False)
+food = Food('Food', 'You picked up a bag. There is food in a bag, the bag also feels warm. This restores 25 hunger',
+            25, False, restrooms, False)
+bandages = Bandages('bandages', 'You picked up bandages, these restore 30 health to you', 30, False, rest, False)
+healing_pot = HealingPotion('Healing Potion', 'You picked a healing potion. This potion restores 50 health to you.',
+                            50, False, [garage, bed], False)
+user = User('Player', 'You are an average person not knowing a lot about what is around him.', 100, 10)
+enemy = Enemy('Zombie', 'One of many zombies', 85, ['pond', 'street', 'street2', 'street3', 'street4', 'park',
+                                                    'playground', 's_gated_area', 'w_gated_area'], 'food')
+
+item_list = [bandages]
 
 current_node = spawn
 directions = ['south', 'north', 'east', 'west', 'down', 'up', 'northeast', 'southeast']
 short_directions = ['s', 'n', 'e', 'w', 'd', 'u', 'ne', 'se']
+
+health = 100
+hunger = 100
+inventory = []
 
 print(current_node.name + '\n' + current_node.description)
 while True:
@@ -356,11 +362,20 @@ while True:
     elif command == 'pew pew':
         print('The house blew up and you died')
         quit(0)
+    elif "take" in command:
+        for _item in item_list:
+            if str.lower(_item.name) in command and _item.is_picked is False and _item.room is current_node:
+                print("you took %s" % _item.name)
+                item_list.remove(_item)
+                inventory.append(_item)
     elif command == "look":
-        print(current_node.name, '\n', current_node.description)
+        print(current_node.name + '\n' + current_node.description)
+        print("Current items in the room :")
+        for _item in item_list:
+            if _item.room == current_node:
+                print("- " + _item.name)
     else:
         print("Command not recognized")
-
     if command in directions:
         try:
             current_node.move(command)
