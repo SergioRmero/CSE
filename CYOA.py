@@ -318,30 +318,35 @@ restrooms = Room('Park Restrooms', 'There are dirty old restrooms that stink. In
                                    ' To the east, the playground.', None, None,
                  None, 'playground', None, None, None, None)
 
-Key_To_Pond = Item('Key to Pond', 'You picked up a key to the pond', False, restrooms, False)
-crossbow = Crossbow('Crossbow', 'It looks like a crossbow, when it fires the arrow goes very far', 50, False,
-                    secret, False)
-pistol = Pistol('Pistol', 'You picked up a pistol.', 15, False, bed, False)
-shotgun = Shotgun('Shotgun', 'You picked up a shotgun, is more effective at close range.', 70,
+Key_To_Pond = Item('key to pond', 'You picked up a key to the pond', False, restrooms, False)
+crossbow = Crossbow('crossbow', 'It looks like a crossbow, when it fires the arrow goes very far', 50, False,
+                    garage, False)
+pistol = Pistol('pistol', 'You picked up a pistol.', 15, False, bed, False)
+shotgun = Shotgun('shotgun', 'You picked up a shotgun, is more effective at close range.', 70,
                   False, secret, False)
-assault_rifle = AssaultRifle('Assault Rifle', 'You picked up an assault rifle.', 35, False, secret, False)
-semi_auto_snipe = SemiAutoSniper('Semi Auto Sniper', 'A sniper, this does more damage than the'
+assault_rifle = AssaultRifle('assault rifle', 'You picked up an assault rifle.', 35, False, secret, False)
+semi_auto_snipe = SemiAutoSniper('semi auto sniper', 'A sniper, this does more damage than the'
                                                      ' crossbow', 75, False, secret, False)
-axe = Axe('Axe', 'You picked up an axe, does not do a lot of damage.', 15, False, 'Pond',
+axe = Axe('axe', 'You picked up an axe, does not do a lot of damage.', 15, False, pond,
           False)
-knife = Knife('Knife', 'You picked up a knife, does the least damage out of all the weapons', 10, False, attic, False)
-backpack = Backpack('Backpack', 'You picked up a backpack, you could probably put some items in here.', 10, False,
+knife = Knife('knife', 'You picked up a knife, does the least damage out of all the weapons', 10, False, attic, False)
+backpack = Backpack('backpack', 'You picked up a backpack, you could probably put some items in here.', 10, False,
                     secret, False)
-food = Food('Food', 'You picked up a bag. There is food in a bag, the bag also feels warm. This restores 25 hunger',
-            25, False, restrooms, False)
+food = Food('food', 'You picked up a bag. There is food in a bag, the bag also feels warm. This restores 25 hunger',
+            25, False, kitchen, False)
+food2 = Food('food', 'You picked up a bag. There is food in a bag, the bag also feels warm. This restores 25 hunger',
+             25, False, restrooms, False)
 bandages = Bandages('bandages', 'You picked up bandages, these restore 30 health to you', 30, False, rest, False)
-healing_pot = HealingPotion('Healing Potion', 'You picked a healing potion. This potion restores 50 health to you.',
-                            50, False, [garage, bed], False)
+healing_pot = HealingPotion('healing potion', 'You picked a healing potion. This potion restores 50 health to you.',
+                            50, False, bed, False)
+healing_pot2 = HealingPotion('healing potion', 'You picked a healing potion. This potion restores 50 health to you.',
+                             50, False, garage, False)
 user = User('Player', 'You are an average person not knowing a lot about what is around him.', 100, 10)
 enemy = Enemy('Zombie', 'One of many zombies', 85, ['pond', 'street', 'street2', 'street3', 'street4', 'park',
                                                     'playground', 's_gated_area', 'w_gated_area'], 'food')
 
-item_list = [bandages]
+item_list = [bandages, assault_rifle, semi_auto_snipe, healing_pot, food, axe, shotgun, pistol, crossbow, Key_To_Pond,
+             knife, backpack, food2, healing_pot2]
 
 current_node = spawn
 directions = ['south', 'north', 'east', 'west', 'down', 'up', 'northeast', 'southeast']
@@ -356,6 +361,10 @@ while True:
     command = input('>_').lower().strip()
     if command == 'quit':
         quit(0)
+    elif command == "items":
+        for _item in item_list:
+            if _item.room == current_node:
+                print(_item.name)
     elif command in short_directions:
         pos = short_directions.index(command)
         command = directions[pos]
@@ -368,6 +377,15 @@ while True:
                 print("you took %s" % _item.name)
                 item_list.remove(_item)
                 inventory.append(_item)
+    elif 'drop' in command:
+        for _item in item_list:
+            if str.lower(_item.name) in command and _item.is_picked is True and _item.room is current_node:
+                print("you dropped %s" % _item.name)
+                item_list.append(_item)
+                inventory.remove(_item)
+    elif command == 'inventory':
+        for _item in inventory:
+            print(_item.name)
     elif command == "look":
         print(current_node.name + '\n' + current_node.description)
         print("Current items in the room :")
