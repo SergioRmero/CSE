@@ -44,8 +44,8 @@
       <file leaf-file-name="CYOA.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/CYOA.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="386" column="0" lean-forward="false" selection-start-line="385" selection-start-column="0" selection-end-line="386" selection-end-column="0" />
+            <state relative-caret-position="289">
+              <caret line="356" column="33" lean-forward="false" selection-start-line="356" selection-start-column="33" selection-end-line="356" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -59,6 +59,11 @@
         <option value="Python Script" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>drop</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="ROOT_SYNC" value="DONT_SYNC" />
@@ -110,6 +115,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -122,7 +128,6 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -679,8 +684,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/CYOA.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="386" column="0" lean-forward="false" selection-start-line="385" selection-start-column="0" selection-end-line="386" selection-end-column="0" />
+        <state relative-caret-position="289">
+          <caret line="356" column="33" lean-forward="false" selection-start-line="356" selection-start-column="33" selection-end-line="356" selection-end-column="33" />
           <folding />
         </state>
       </provider>

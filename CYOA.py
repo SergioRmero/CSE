@@ -6,10 +6,11 @@ class Item(object):
         self.room = room
         self.used = used
 
-    def drop(self):
+    def drop(self, room):
         if self.is_picked:
             self.is_picked = False
-            print("You drop %s" % self.name)
+            self.room = room
+            print("You dropped %s" % self.name)
         else:
             print("You can't drop that.")
 
@@ -103,9 +104,6 @@ class Shotgun(Guns):
     def shoot(self):
         print("You shoot with %s" % self.name)
 
-    def drop(self):
-        print("You drop %s" % self.name)
-
 
 class AssaultRifle(Guns):
     def __init__(self, name, description, damage_dealt, is_picked, room, used):
@@ -113,9 +111,6 @@ class AssaultRifle(Guns):
 
     def shoot(self):
         print("You shoot with %s" % self.name)
-
-    def drop(self):
-        print("You drop %s" % self.name)
 
 
 class SemiAutoSniper(Guns):
@@ -125,9 +120,6 @@ class SemiAutoSniper(Guns):
     def shoot(self):
         print("You shoot with %s" % self.name)
 
-    def drop(self):
-        print("You drop %s" % self.name)
-
 
 class Axe(Melee):
     def __init__(self, name, description, damage_dealt, is_picked, room, used):
@@ -136,9 +128,6 @@ class Axe(Melee):
     def attack(self):
         print("You attack with %s" % self.name)
 
-    def drop(self):
-        print("You drop %s" % self.name)
-
 
 class Knife(Melee):
     def __init__(self, name, description, damage_dealt, is_picked, room, used):
@@ -146,9 +135,6 @@ class Knife(Melee):
 
     def attack(self):
         print("You attack with %s" % self.name)
-
-    def drop(self):
-        print("You drop %s" % self.name)
 
 
 class Backpack(Wearable):
@@ -352,6 +338,7 @@ current_node = spawn
 directions = ['south', 'north', 'east', 'west', 'down', 'up', 'northeast', 'southeast']
 short_directions = ['s', 'n', 'e', 'w', 'd', 'u', 'ne', 'se']
 
+sib = 10
 health = 100
 hunger = 100
 inventory = []
@@ -368,21 +355,18 @@ while True:
     elif command in short_directions:
         pos = short_directions.index(command)
         command = directions[pos]
-    elif command == 'pew pew':
-        print('The house blew up and you died')
-        quit(0)
     elif "take" in command:
         for _item in item_list:
             if str.lower(_item.name) in command and _item.is_picked is False and _item.room is current_node:
-                print("you took %s" % _item.name)
                 item_list.remove(_item)
                 inventory.append(_item)
+                _item.pick()
     elif 'drop' in command:
-        for _item in item_list:
-            if str.lower(_item.name) in command and _item.is_picked is True and _item.room is current_node:
-                print("you dropped %s" % _item.name)
-                item_list.append(_item)
+        for _item in inventory:
+            if str.lower(_item.name) in command and _item.is_picked is True:
+                _item.drop(current_node)
                 inventory.remove(_item)
+                item_list.append(_item)
     elif command == 'inventory':
         for _item in inventory:
             print(_item.name)
