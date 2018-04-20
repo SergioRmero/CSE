@@ -138,11 +138,23 @@ class Knife(Melee):
 
 
 class Backpack(Wearable):
-    def __init__(self, name, description, storage, is_picked, room, used):
+    def __init__(self, name, description, storage, is_picked, room, used, worn):
+        self.worn = worn
         super(Backpack, self). __init__(name, description, storage, is_picked, room, used)
 
     def wear(self):
-        print("You put on %s" % self.name)
+        if not self.worn:
+            self.worn = True
+            print("You are wearing %s" % self.name)
+        else:
+            print("You're already wearing the %s" % str.lower(self.name))
+
+    def off(self):
+        if self.worn:
+            self.worn = False
+            print("You took off %s" % self.name)
+        else:
+            print("You are not wearing %s" % self.name)
 
 
 class Food(Consumable):
@@ -317,7 +329,7 @@ axe = Axe('axe', 'You picked up an axe, does not do a lot of damage.', 15, False
           False)
 knife = Knife('knife', 'You picked up a knife, does the least damage out of all the weapons', 10, False, attic, False)
 backpack = Backpack('backpack', 'You picked up a backpack, you could probably put some items in here.', 10, False,
-                    secret, False)
+                    secret, False, False)
 food = Food('food', 'You picked up a bag. There is food in a bag, the bag also feels warm. This restores 25 hunger',
             25, False, kitchen, False)
 food2 = Food('food', 'You picked up a bag. There is food in a bag, the bag also feels warm. This restores 25 hunger',
@@ -357,16 +369,32 @@ while True:
         command = directions[pos]
     elif "take" in command:
         for _item in item_list:
-            if str.lower(_item.name) in command and _item.is_picked is False and _item.room is current_node:
+            if str.lower(_item.name) in command and not _item.is_picked and _item.room is current_node:
+                item_list.remove(_item)
+                inventory.append(_item)
+                _item.pick()
+            elif "all" in command and _item.room is current_node:
                 item_list.remove(_item)
                 inventory.append(_item)
                 _item.pick()
     elif 'drop' in command:
         for _item in inventory:
-            if str.lower(_item.name) in command and _item.is_picked is True:
+            if str.lower(_item.name) in command and _item.is_picked:
                 _item.drop(current_node)
                 inventory.remove(_item)
                 item_list.append(_item)
+    elif "wear" in command:
+        for _item in inventory:
+            if str.lower(_item.name) in command and _item.is_picked:
+                if isinstance(_item, Backpack):
+                    _item.wear()
+                else:
+                    print("You can't wear %s" % _item.name)
+    elif "remove" in command:
+        for _item in inventory:
+            if str.lower(_item.name) in command and _item.is_picked:
+                if isinstance(_item, Backpack):
+                    _item.off()
     elif command == 'inventory':
         for _item in inventory:
             print(_item.name)
@@ -376,6 +404,8 @@ while True:
         for _item in item_list:
             if _item.room == current_node:
                 print("- " + _item.name)
+    elif command == 'abcdefghijklmnopqrstuvwxyz':
+        quit('wow, ur smrtr then a 3 yer old')
     else:
         print("Command not recognized")
     if command in directions:
