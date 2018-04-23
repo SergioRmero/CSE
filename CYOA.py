@@ -172,7 +172,7 @@ class Healing(Consumable):
         super(Healing, self). __init__(name, description, health_restored, is_picked, room, used)
 
     def heal(self, heal_amount):
-        self.health -= heal_amount
+        self.health += heal_amount
 
 
 class Bandages(Healing):
@@ -181,7 +181,7 @@ class Bandages(Healing):
         super(Bandages, self). __init__(name, description, health_restored, is_picked, room, used)
 
     def heal(self, heal_amount):
-        self.health -= heal_amount
+        self.health += heal_amount
         print("You healed 10 hp with %s" % self.name)
 
 
@@ -323,8 +323,8 @@ pistol = Pistol('pistol', 'You picked up a pistol.', 15, False, bed, False)
 shotgun = Shotgun('shotgun', 'You picked up a shotgun, is more effective at close range.', 70,
                   False, secret, False)
 assault_rifle = AssaultRifle('assault rifle', 'You picked up an assault rifle.', 35, False, secret, False)
-semi_auto_snipe = SemiAutoSniper('semi auto sniper', 'A sniper, this does more damage than the'
-                                                     ' crossbow', 75, False, secret, False)
+semi_auto_snipe = SemiAutoSniper('sniper', 'A sniper, this does more damage than the'
+                                 ' crossbow', 75, False, secret, False)
 axe = Axe('axe', 'You picked up an axe, does not do a lot of damage.', 15, False, pond,
           False)
 knife = Knife('knife', 'You picked up a knife, does the least damage out of all the weapons', 10, False, attic, False)
@@ -404,8 +404,11 @@ while True:
         for _item in item_list:
             if _item.room == current_node:
                 print("- " + _item.name)
-    elif command == 'abcdefghijklmnopqrstuvwxyz':
-        quit('wow, ur smrtr then a 3 yer old')
+    elif 'use' in command:
+        ii = isinstance
+        for _item in inventory:
+            if str.lower(_item.name) in command and _item.is_picked and ii(_item, Bandages) or ii(_item, HealingPotion):
+                _item.use(current_node)
     else:
         print("Command not recognized")
     if command in directions:
