@@ -24,7 +24,7 @@
       <file leaf-file-name="Character Class.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Character Class.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="28">
+            <state relative-caret-position="289">
               <caret line="17" column="25" lean-forward="false" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
               <folding />
             </state>
@@ -44,8 +44,8 @@
       <file leaf-file-name="CYOA.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/CYOA.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2987">
-              <caret line="183" column="21" lean-forward="false" selection-start-line="183" selection-start-column="21" selection-end-line="183" selection-end-column="21" />
+            <state relative-caret-position="175">
+              <caret line="390" column="39" lean-forward="true" selection-start-line="390" selection-start-column="39" selection-end-line="390" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -64,6 +64,7 @@
     <findStrings>
       <find>drop</find>
       <find>inventory</find>
+      <find>heal</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -116,8 +117,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -129,6 +128,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -316,8 +317,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20204978" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20204978" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2933754" sideWeight="0.5146413" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -676,7 +678,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Character Class.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="28">
+        <state relative-caret-position="289">
           <caret line="17" column="25" lean-forward="false" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
           <folding />
         </state>
@@ -684,8 +686,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/CYOA.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2987">
-          <caret line="183" column="21" lean-forward="false" selection-start-line="183" selection-start-column="21" selection-end-line="183" selection-end-column="21" />
+        <state relative-caret-position="175">
+          <caret line="390" column="39" lean-forward="true" selection-start-line="390" selection-start-column="39" selection-end-line="390" selection-end-column="39" />
           <folding />
         </state>
       </provider>

@@ -159,11 +159,13 @@ class Backpack(Wearable):
 
 class Food(Consumable):
     def __init__(self, name, description, hunger_restored, is_picked, room, used):
+        self.hunger = 100
         super(Food, self). __init__(name, description, hunger_restored, is_picked, room, used)
 
-    def eat(self):
-        self.used = True
-        print("You ate %s" % self.name)
+    def eat(self, hunger_restored):
+       hunger_restored = 20
+       self.hunger += hunger_restored
+       print("You ate %s and restored 20 hunger" % self.name)
 
 
 class Healing(Consumable):
@@ -181,6 +183,7 @@ class Bandages(Healing):
         super(Bandages, self). __init__(name, description, health_restored, is_picked, room, used)
 
     def heal(self, heal_amount):
+        heal_amount = 10
         self.health += heal_amount
         print("You healed 10 hp with %s" % self.name)
 
@@ -191,7 +194,8 @@ class HealingPotion(Healing):
         super(HealingPotion, self). __init__(name, description, health_restored, is_picked, room, used)
 
     def heal(self, heal_amount):
-        self.health -= heal_amount
+        heal_amount = 25
+        self.health += heal_amount
         print("You healed 25 hp with %s" % self.name)
 
 
@@ -331,9 +335,9 @@ knife = Knife('knife', 'You picked up a knife, does the least damage out of all 
 backpack = Backpack('backpack', 'You picked up a backpack, you could probably put some items in here.', 10, False,
                     secret, False, False)
 food = Food('food', 'You picked up a bag. There is food in a bag, the bag also feels warm. This restores 25 hunger',
-            25, False, kitchen, False)
+            20, False, kitchen, False)
 food2 = Food('food', 'You picked up a bag. There is food in a bag, the bag also feels warm. This restores 25 hunger',
-             25, False, restrooms, False)
+             20, False, restrooms, False)
 bandages = Bandages('bandages', 'You picked up bandages, these restore 30 health to you', 30, False, rest, False)
 healing_pot = HealingPotion('healing potion', 'You picked a healing potion. This potion restores 50 health to you.',
                             50, False, bed, False)
@@ -354,6 +358,8 @@ sib = 10
 health = 100
 hunger = 100
 inventory = []
+
+nil = []
 
 print(current_node.name + '\n' + current_node.description)
 while True:
@@ -404,11 +410,18 @@ while True:
         for _item in item_list:
             if _item.room == current_node:
                 print("- " + _item.name)
-    elif 'use' in command:
+    elif 'heal with' in command:
         ii = isinstance
         for _item in inventory:
             if str.lower(_item.name) in command and _item.is_picked and ii(_item, Bandages) or ii(_item, HealingPotion):
-                _item.use(current_node)
+                _item.heal(current_node)
+                nil.append(_item)
+    elif 'eat' in command:
+        ii = isinstance
+        for _item in inventory:
+            if str.lower(_item.name) in command and _item.is_picked and ii(_item, Food):
+                _item.eat(current_node)
+                nil.append(_item)
     else:
         print("Command not recognized")
     if command in directions:
