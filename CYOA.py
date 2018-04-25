@@ -163,9 +163,8 @@ class Food(Consumable):
         super(Food, self). __init__(name, description, hunger_restored, is_picked, room, used)
 
     def eat(self, hunger_restored):
-       hunger_restored = 20
-       self.hunger += hunger_restored
-       print("You ate %s and restored 20 hunger" % self.name)
+        self.hunger += hunger_restored
+        print("You ate %s and restored %d hunger" % (self.name, hunger_restored))
 
 
 class Healing(Consumable):
@@ -362,7 +361,7 @@ inventory = []
 nil = []
 
 print(current_node.name + '\n' + current_node.description)
-while True:
+while health != 0:
     command = input('>_').lower().strip()
     if command == 'quit':
         quit(0)
@@ -415,12 +414,14 @@ while True:
         for _item in inventory:
             if str.lower(_item.name) in command and _item.is_picked and ii(_item, Bandages) or ii(_item, HealingPotion):
                 _item.heal(current_node)
+                inventory.remove(_item)
                 nil.append(_item)
     elif 'eat' in command:
         ii = isinstance
         for _item in inventory:
             if str.lower(_item.name) in command and _item.is_picked and ii(_item, Food):
-                _item.eat(current_node)
+                _item.eat(20)
+                inventory.remove(_item)
                 nil.append(_item)
     else:
         print("Command not recognized")
