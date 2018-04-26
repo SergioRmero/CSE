@@ -113,9 +113,9 @@ class AssaultRifle(Guns):
         print("You shoot with %s" % self.name)
 
 
-class SemiAutoSniper(Guns):
+class Sniper(Guns):
     def __init__(self, name, description, damage_dealt, is_picked, room, used):
-        super(SemiAutoSniper, self). __init__(name, description, damage_dealt, is_picked, room, used)
+        super(Sniper, self). __init__(name, description, damage_dealt, is_picked, room, used)
 
     def shoot(self):
         print("You shoot with %s" % self.name)
@@ -326,8 +326,7 @@ pistol = Pistol('pistol', 'You picked up a pistol.', 15, False, bed, False)
 shotgun = Shotgun('shotgun', 'You picked up a shotgun, is more effective at close range.', 70,
                   False, secret, False)
 assault_rifle = AssaultRifle('assault rifle', 'You picked up an assault rifle.', 35, False, secret, False)
-semi_auto_snipe = SemiAutoSniper('sniper', 'A sniper, this does more damage than the'
-                                 ' crossbow', 75, False, secret, False)
+snipe = Sniper('sniper', 'A sniper, this does more damage than the crossbow', 65, False, secret, False)
 axe = Axe('axe', 'You picked up an axe, does not do a lot of damage.', 15, False, pond,
           False)
 knife = Knife('knife', 'You picked up a knife, does the least damage out of all the weapons', 10, False, attic, False)
@@ -346,7 +345,7 @@ user = User('Player', 'You are an average person not knowing a lot about what is
 enemy = Enemy('Zombie', 'One of many zombies', 85, ['pond', 'street', 'street2', 'street3', 'street4', 'park',
                                                     'playground', 's_gated_area', 'w_gated_area'], 'food')
 
-item_list = [bandages, assault_rifle, semi_auto_snipe, healing_pot, food, axe, shotgun, pistol, crossbow, Key_To_Pond,
+item_list = [bandages, assault_rifle, snipe, healing_pot, food, axe, shotgun, pistol, crossbow, Key_To_Pond,
              knife, backpack, food2, healing_pot2]
 
 current_node = spawn
@@ -366,9 +365,17 @@ while health != 0:
     if command == 'quit':
         quit(0)
     elif command == "items":
+        __item = False
         for _item in item_list:
-            if _item.room == current_node:
-                print(_item.name)
+            if _item.room is not current_node:
+                __item = False
+            else:
+                __item = True
+                print("- " + _item.name)
+        if not __item:
+            print("There are no items in the room.")
+        else:
+            None
     elif command in short_directions:
         pos = short_directions.index(command)
         command = directions[pos]
@@ -423,6 +430,12 @@ while health != 0:
                 _item.eat(20)
                 inventory.remove(_item)
                 nil.append(_item)
+#    elif 'shoot with' in command:
+#        ii = isinstance
+#        for _item in inventory:
+#            if str.lower(_item.name) in command and _item.is_picked:
+#                if ii(_item, Sniper) or ii(_item, AssaultRifle) or ii(_item, Shotgun) or ii(_item, Pistol)
+            #  or ii(_item, Crossbow):
     else:
         print("Command not recognized")
     if command in directions:
