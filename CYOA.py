@@ -359,7 +359,8 @@ inventory = []
 
 nil = []
 
-print(current_node.name + '\n' + current_node.description)
+print(current_node.name + '\n' + current_node.description + '\n' + 'Health = %s' % health + '\n' + 'Hunger = %s'
+      % hunger)
 while health != 0:
     command = input('>_').lower().strip()
     if command == 'quit':
@@ -374,8 +375,6 @@ while health != 0:
                 print("- " + _item.name)
         if not __item:
             print("There are no items in the room.")
-        else:
-            None
     elif command in short_directions:
         pos = short_directions.index(command)
         command = directions[pos]
@@ -423,6 +422,8 @@ while health != 0:
                 _item.heal(current_node)
                 inventory.remove(_item)
                 nil.append(_item)
+        else:
+            print('Command not recognized.')
     elif 'eat' in command:
         ii = isinstance
         for _item in inventory:
@@ -430,17 +431,12 @@ while health != 0:
                 _item.eat(20)
                 inventory.remove(_item)
                 nil.append(_item)
-#    elif 'shoot with' in command:
-#        ii = isinstance
-#        for _item in inventory:
-#            if str.lower(_item.name) in command and _item.is_picked:
-#                if ii(_item, Sniper) or ii(_item, AssaultRifle) or ii(_item, Shotgun) or ii(_item, Pistol)
-            #  or ii(_item, Crossbow):
     else:
         print("Command not recognized")
     if command in directions:
         try:
             current_node.move(command)
-            print(current_node.name + "\n" + current_node.description)
+            print(current_node.name + "\n" + current_node.description + '\n' + 'Health = %s' % health + '\n' +
+                  'Hunger = %s' % hunger)
         except KeyError:
             print("You cannot go this way")
