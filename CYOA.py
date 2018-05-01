@@ -75,65 +75,87 @@ class Melee(Weapons):
 
 class Crossbow(Ranged):
     def __init__(self, name, description, damage_dealt, is_picked, room, used):
+        self.enemy_health = 100
         super(Crossbow, self). __init__(name, description, damage_dealt, is_picked, room, used)
 
     def shoot(self):
+        damage_dealt = 50
+        self.enemy_health -= damage_dealt
         print("You shoot with %s" % self.name)
 
 
 class Guns(Ranged):
     def __init__(self, name, description, damage_dealt, is_picked, room, used):
+        self.enemy_health = 100
         super(Guns, self). __init__(name, description, damage_dealt, is_picked, room, used)
 
     def shoot(self):
-        print("You shoot with %s" % self.name)
+        print("You shot with %s" % self.name)
 
 
 class Pistol(Guns):
     def __init__(self, name, description, damage_dealt, is_picked, room, used):
+        self.enemy_health = 100
         super(Guns, self). __init__(name, description, damage_dealt, is_picked, room, used)
 
     def shoot(self):
-        print('You shoot with %s' % self.name)
+        damage_dealt = 15
+        self.enemy_health -= damage_dealt
+        print('You shot with %s' % self.name)
 
 
 class Shotgun(Guns):
     def __init__(self, name, description, damage_dealt, is_picked, room, used):
+        self.enemy_health = 100
         super(Shotgun, self). __init__(name, description, damage_dealt, is_picked, room, used)
 
     def shoot(self):
-        print("You shoot with %s" % self.name)
+        damage_dealt = 70
+        self.enemy_health -= damage_dealt
+        print("You shot with %s" % self.name)
 
 
 class AssaultRifle(Guns):
     def __init__(self, name, description, damage_dealt, is_picked, room, used):
+        self.enemy_health = 100
         super(AssaultRifle, self). __init__(name, description, damage_dealt, is_picked, room, used)
 
     def shoot(self):
-        print("You shoot with %s" % self.name)
+        damage_dealt = 40
+        self.enemy_health -= damage_dealt
+        print("You shot with %s" % self.name)
 
 
 class Sniper(Guns):
     def __init__(self, name, description, damage_dealt, is_picked, room, used):
+        self.enemy_health = 100
         super(Sniper, self). __init__(name, description, damage_dealt, is_picked, room, used)
 
     def shoot(self):
-        print("You shoot with %s" % self.name)
+        damage_dealt = 65
+        self.enemy_health -= damage_dealt
+        print("You shot with %s" % self.name)
 
 
 class Axe(Melee):
     def __init__(self, name, description, damage_dealt, is_picked, room, used):
+        self.enemy_health = 100
         super(Axe, self). __init__(name, description, damage_dealt, is_picked, room, used)
 
     def attack(self):
+        damage_dealt = 15
+        self.enemy_health -= damage_dealt
         print("You attack with %s" % self.name)
 
 
 class Knife(Melee):
     def __init__(self, name, description, damage_dealt, is_picked, room, used):
+        self.enemy_health = 100
         super(Knife, self). __init__(name, description, damage_dealt, is_picked, room, used)
 
     def attack(self):
+        damage_dealt = 10
+        self.enemy_health -= damage_dealt
         print("You attack with %s" % self.name)
 
 
@@ -325,7 +347,7 @@ crossbow = Crossbow('crossbow', 'It looks like a crossbow, when it fires the arr
 pistol = Pistol('pistol', 'You picked up a pistol.', 15, False, bed, False)
 shotgun = Shotgun('shotgun', 'You picked up a shotgun, is more effective at close range.', 70,
                   False, secret, False)
-assault_rifle = AssaultRifle('assault rifle', 'You picked up an assault rifle.', 35, False, secret, False)
+assault_rifle = AssaultRifle('assault rifle', 'You picked up an assault rifle.', 40, False, secret, False)
 snipe = Sniper('sniper', 'A sniper, this does more damage than the crossbow', 65, False, secret, False)
 axe = Axe('axe', 'You picked up an axe, does not do a lot of damage.', 15, False, pond,
           False)
@@ -424,6 +446,23 @@ while health != 0:
                 nil.append(_item)
         else:
             print('Command not recognized.')
+    elif 'shoot with' in command:
+        ii = isinstance
+        for _item in inventory:
+            if str.lower(_item.name) in command and _item.is_picked:
+                s = Sniper
+                ar = AssaultRifle
+                sg = Shotgun
+                cb = Crossbow
+                p = Pistol
+                if ii(_item, s) or ii(_item, ar) or ii(_item, sg) or ii(_item, cb) or ii(_item, p):
+                    _item.shoot()
+    elif 'attack with' in command:
+        ii = isinstance
+        for _item in inventory:
+            if str.lower(_item.name) in command and _item.is_picked:
+                if ii(_item, Axe) or ii(_item, Knife):
+                    _item.attack()
     elif 'eat' in command:
         ii = isinstance
         for _item in inventory:
