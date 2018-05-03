@@ -61,8 +61,8 @@ class Ranged(Weapons):
     def __init__(self, name, description, damage_dealt, is_picked, room, used):
         super(Ranged, self). __init__(name, description, damage_dealt, is_picked, room, used)
 
-    def shoot(self):
-        print("You shoot with %s" % self.name)
+    def shoot(self, target):
+        print("You shoot %s with your %s" % (str.lower(target.name), str.lower(self.name)))
 
 
 class Melee(Weapons):
@@ -78,10 +78,8 @@ class Crossbow(Ranged):
         self.enemy_health = 100
         super(Crossbow, self). __init__(name, description, damage_dealt, is_picked, room, used)
 
-    def shoot(self):
-        damage_dealt = 50
-        self.enemy_health -= damage_dealt
-        print("You shoot with %s" % self.name)
+    def shoot(self, target):
+        print("You shoot %s with your %s" % (str.lower(target.name), str.lower(self.name)))
 
 
 class Guns(Ranged):
@@ -89,8 +87,8 @@ class Guns(Ranged):
         self.enemy_health = 100
         super(Guns, self). __init__(name, description, damage_dealt, is_picked, room, used)
 
-    def shoot(self):
-        print("You shot with %s" % self.name)
+    def shoot(self, target):
+        print("You shoot %s with your %s" % (str.lower(target.name), str.lower(self.name)))
 
 
 class Pistol(Guns):
@@ -98,10 +96,8 @@ class Pistol(Guns):
         self.enemy_health = 100
         super(Guns, self). __init__(name, description, damage_dealt, is_picked, room, used)
 
-    def shoot(self):
-        damage_dealt = 15
-        self.enemy_health -= damage_dealt
-        print('You shot with %s' % self.name)
+    def shoot(self, target):
+        print("You shoot %s with your %s" % (str.lower(target.name), str.lower(self.name)))
 
 
 class Shotgun(Guns):
@@ -109,10 +105,8 @@ class Shotgun(Guns):
         self.enemy_health = 100
         super(Shotgun, self). __init__(name, description, damage_dealt, is_picked, room, used)
 
-    def shoot(self):
-        damage_dealt = 70
-        self.enemy_health -= damage_dealt
-        print("You shot with %s" % self.name)
+    def shoot(self, target):
+        print("You shoot %s with your %s" % (str.lower(target.name), str.lower(self.name)))
 
 
 class AssaultRifle(Guns):
@@ -120,10 +114,8 @@ class AssaultRifle(Guns):
         self.enemy_health = 100
         super(AssaultRifle, self). __init__(name, description, damage_dealt, is_picked, room, used)
 
-    def shoot(self):
-        damage_dealt = 40
-        self.enemy_health -= damage_dealt
-        print("You shot with %s" % self.name)
+    def shoot(self, target):
+        print("You shoot %s with your %s" % (str.lower(target.name), str.lower(self.name)))
 
 
 class Sniper(Guns):
@@ -131,10 +123,8 @@ class Sniper(Guns):
         self.enemy_health = 100
         super(Sniper, self). __init__(name, description, damage_dealt, is_picked, room, used)
 
-    def shoot(self):
-        damage_dealt = 65
-        self.enemy_health -= damage_dealt
-        print("You shot with %s" % self.name)
+    def shoot(self, target):
+        print("You shoot %s with your %s" % (str.lower(target.name), str.lower(self.name)))
 
 
 class Axe(Melee):
@@ -277,7 +267,7 @@ spawn = Room("Spawn", 'You are in an empty room with the ceiling light dimly lit
              ' There is an open door at the south side of the room',
              None, "west", None, None, None, None, None, None)
 west = Room("West Room", "There is a door on the east side of the room and a trap door on the floor that seems to be"
-            " locked", "spawn", None, "living", None, None, "secret", None, None)
+            " unlocked", "spawn", None, "living", None, None, "secret", None, None)
 secret = Room("Secret Room", "This is a dark room with what seems to"
                              " be loaded with weapons.",
               None, None, None, None, "west", None, None, None)
@@ -364,11 +354,19 @@ healing_pot = HealingPotion('healing potion', 'You picked a healing potion. This
 healing_pot2 = HealingPotion('healing potion', 'You picked a healing potion. This potion restores 50 health to you.',
                              50, False, garage, False)
 user = User('Player', 'You are an average person not knowing a lot about what is around him.', 100, 10)
-enemy = Enemy('Zombie', 'One of many zombies', 85, ['pond', 'street', 'street2', 'street3', 'street4', 'park',
-                                                    'playground', 's_gated_area', 'w_gated_area'], 'food')
+enemy1 = Enemy('Zombie', 'One of many zombies', 200, pond, 'food')
+enemy2 = Enemy('Zombie', 'One of many zombies', 200, street, 'food')
+enemy3 = Enemy('Zombie', 'One of many zombies', 150, street2, 'food')
+enemy4 = Enemy('Zombie', 'One of many zombies', 85, street3, 'food')
+enemy5 = Enemy('Zombie', 'One of many zombies', 50, street4, 'food')
+enemy6 = Enemy('Zombie', 'One of many zombies', 85, park, 'food')
+enemy7 = Enemy('Zombie', 'One of many zombies', 80, playground, 'food')
+enemy8 = Enemy('Zombie', 'One of many zombies', 123, s_gated_area, 'food')
+enemy9 = Enemy('Zombie', 'One of many zombies', 420, w_gated_area, 'food')
 
 item_list = [bandages, assault_rifle, snipe, healing_pot, food, axe, shotgun, pistol, crossbow, Key_To_Pond,
              knife, backpack, food2, healing_pot2]
+enemy_list = [enemy1, enemy2, enemy3, enemy4, enemy5, enemy6, enemy7, enemy8, enemy9]
 
 current_node = spawn
 directions = ['south', 'north', 'east', 'west', 'down', 'up', 'northeast', 'southeast']
@@ -377,9 +375,12 @@ short_directions = ['s', 'n', 'e', 'w', 'd', 'u', 'ne', 'se']
 sib = 10
 health = 100
 hunger = 100
+main = None
 inventory = []
 
 nil = []
+
+ii = isinstance
 
 print(current_node.name + '\n' + current_node.description + '\n' + 'Health = %s' % health + '\n' + 'Hunger = %s'
       % hunger)
@@ -405,11 +406,27 @@ while health != 0:
             if str.lower(_item.name) in command and not _item.is_picked and _item.room is current_node:
                 item_list.remove(_item)
                 inventory.append(_item)
-                _item.pick()
+                sg = Shotgun
+                ar = AssaultRifle
+                s = Sniper
+                cb = Crossbow
+                p = Pistol
+                if ii(_item, sg) or ii(_item, ar) or ii(_item, s) or ii(_item, cb) or ii(_item, p):
+                    print("You picked up the %s but you need to equip it before you use it." % str.lower(_item.name))
+                else:
+                    _item.pick()
             elif "all" in command and _item.room is current_node:
                 item_list.remove(_item)
                 inventory.append(_item)
-                _item.pick()
+                sg = Shotgun
+                ar = AssaultRifle
+                s = Sniper
+                cb = Crossbow
+                p = Pistol
+                if ii(_item, sg) or ii(_item, ar) or ii(_item, s) or ii(_item, cb) or ii(_item, p):
+                    print("You picked up the %s but you need to equip it before you use it." % str.lower(_item.name))
+                else:
+                    _item.pick()
     elif 'drop' in command:
         for _item in inventory:
             if str.lower(_item.name) in command and _item.is_picked:
@@ -428,6 +445,35 @@ while health != 0:
             if str.lower(_item.name) in command and _item.is_picked:
                 if isinstance(_item, Backpack):
                     _item.off()
+    elif "equip" in command:
+        for _item in inventory:
+            if str.lower(_item.name) in command and _item.pick:
+                sg = Shotgun
+                ar = AssaultRifle
+                s = Sniper
+                cb = Crossbow
+                p = Pistol
+                if ii(_item, sg) or ii(_item, ar) or ii(_item, s) or ii(_item, cb) or ii(_item, p):
+                    if main is not None:
+                        main = None
+                        main = _item
+                    else:
+                        main = _item
+                    print("You equipped the %s" % str.lower(_item.name))
+    elif "unequip" in command:
+        for _item in inventory:
+            if str.lower(_item.name) in command and _item.pick:
+                sg = Shotgun
+                ar = AssaultRifle
+                s = Sniper
+                cb = Crossbow
+                p = Pistol
+                if ii(_item, sg) or ii(_item, ar) or ii(_item, s) or ii(_item, cb) or ii(_item, p):
+                    if main is not None:
+                        main = None
+                        print("You unequipped the %s" % str.lower(_item.name))
+                    else:
+                        print("You can't unequip anything.")
     elif command == 'inventory':
         for _item in inventory:
             print(_item.name)
@@ -446,23 +492,25 @@ while health != 0:
                 nil.append(_item)
         else:
             print('Command not recognized.')
-    elif 'shoot with' in command:
-        ii = isinstance
-        for _item in inventory:
-            if str.lower(_item.name) in command and _item.is_picked:
-                s = Sniper
-                ar = AssaultRifle
-                sg = Shotgun
-                cb = Crossbow
-                p = Pistol
-                if ii(_item, s) or ii(_item, ar) or ii(_item, sg) or ii(_item, cb) or ii(_item, p):
-                    _item.shoot()
-    elif 'attack with' in command:
+    elif 'shoot' in command:
+        for enemy in enemy_list:
+            if str.lower(enemy.name) in command and enemy.room is current_node:
+                enemy.health -= main.damage_dealt
+                main.shoot(enemy)
+        for enemy in enemy_list:
+            if enemy.room is current_node and enemy.health <= 0:
+                enemy.room = None
+                enemy_list.remove(enemy)
+                nil.append(enemy)
+                print("You killed %s" % str.lower(enemy.name))
+
+    elif 'attack zombie with' in command:
         ii = isinstance
         for _item in inventory:
             if str.lower(_item.name) in command and _item.is_picked:
                 if ii(_item, Axe) or ii(_item, Knife):
                     _item.attack()
+
     elif 'eat' in command:
         ii = isinstance
         for _item in inventory:
