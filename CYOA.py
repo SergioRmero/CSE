@@ -346,7 +346,7 @@ backpack = Backpack('backpack', 'You picked up a backpack, you could probably pu
                     secret, False, False)
 food = Food('food', 'You picked up a bag. There is food in a bag, the bag also feels warm. This restores 25 hunger',
             20, False, kitchen, False)
-food2 = Food('food', 'You picked up a bag. There is food in a bag, the bag also feels warm. This restores 25 hunger',
+food2 = Food('Food', 'You picked up a bag. There is food in a bag, the bag also feels warm. This restores 25 hunger',
              20, False, restrooms, False)
 bandages = Bandages('bandages', 'You picked up bandages, these restore 30 health to you', 30, False, rest, False)
 healing_pot = HealingPotion('healing potion', 'You picked a healing potion. This potion restores 50 health to you.',
@@ -503,7 +503,6 @@ while health != 0:
                 enemy_list.remove(enemy)
                 nil.append(enemy)
                 print("You killed %s" % str.lower(enemy.name))
-
     elif 'attack zombie with' in command:
         ii = isinstance
         for _item in inventory:
@@ -518,6 +517,9 @@ while health != 0:
                 _item.eat(20)
                 inventory.remove(_item)
                 nil.append(_item)
+                hunger += 20
+    elif command == 'stats':
+        print("Health = %s" % health + "\n" + "Hunger = %s" % hunger)
     else:
         print("Command not recognized")
     if command in directions:
@@ -527,3 +529,4 @@ while health != 0:
                   'Hunger = %s' % hunger)
         except KeyError:
             print("You cannot go this way")
+    hunger -= 0.5
