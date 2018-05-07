@@ -1,3 +1,4 @@
+import random
 class Item(object):
     def __init__(self, name, description, is_picked, room, used):
         self.name = name
@@ -226,9 +227,6 @@ class User(Characters):
         self.health -= amount
         print("You lost %s damage" % self.health)
 
-    def take(self, item):
-        print("You took %s", item)
-
 
 class Enemy(Characters):
     def __init__(self, name, description, health, room, item_drop):
@@ -299,7 +297,8 @@ garage = Room("Garage", "The garage is small, there is no car inside. There are 
                         " all across the walls.", None, "street2", "porch",
               None, None, None, None, None)
 street = Room("Street", "You are on the street in front of the house, on the east there is street, and at west there"
-                        " is more street", "porch", "park", "street2", "street3", None, None, None, None)
+                        " is more street, there is also a zombie coming towards you.", "porch", "park", "street2",
+                        "street3", None, None, None, None)
 street2 = Room("East Street", "To the east, it looks like there is a gate to what seems to be a"
                               " neighborhood, to the west... more"
                               " street", "garage", None, "neighborhood_gate", "street", None, None, None, None)
@@ -385,6 +384,10 @@ ii = isinstance
 print(current_node.name + '\n' + current_node.description + '\n' + 'Health = %s' % health + '\n' + 'Hunger = %s'
       % hunger)
 while health != 0:
+    if health > 100:
+        health = 100
+    elif hunger > 100:
+        hunger = 100
     command = input('>_').lower().strip()
     if command == 'quit':
         quit(0)
@@ -396,8 +399,6 @@ while health != 0:
             else:
                 __item = True
                 print("- " + _item.name)
-        if not __item:
-            print("There are no items in the room.")
     elif command in short_directions:
         pos = short_directions.index(command)
         command = directions[pos]
@@ -509,7 +510,6 @@ while health != 0:
             if str.lower(_item.name) in command and _item.is_picked:
                 if ii(_item, Axe) or ii(_item, Knife):
                     _item.attack()
-
     elif 'eat' in command:
         ii = isinstance
         for _item in inventory:
