@@ -1,4 +1,6 @@
-import random
+# import random
+
+
 class Item(object):
     def __init__(self, name, description, is_picked, room, used):
         self.name = name
@@ -238,9 +240,6 @@ class Enemy(Characters):
         self.health -= damage
         print("%s attacked you" % self.name)
 
-    def death(self):
-        print('%s has been killed.' % self.name)
-
 
 class Room(object):
     def __init__(self, name, description, north, south, east, west, up, down, northeast, southeast):
@@ -347,26 +346,45 @@ food = Food('food', 'You picked up a bag. There is food in a bag, the bag also f
             20, False, kitchen, False)
 food2 = Food('Food', 'You picked up a bag. There is food in a bag, the bag also feels warm. This restores 25 hunger',
              20, False, restrooms, False)
-bandages = Bandages('bandages', 'You picked up bandages, these restore 30 health to you', 30, False, rest, False)
-healing_pot = HealingPotion('healing potion', 'You picked a healing potion. This potion restores 50 health to you.',
-                            50, False, bed, False)
-healing_pot2 = HealingPotion('healing potion', 'You picked a healing potion. This potion restores 50 health to you.',
-                             50, False, garage, False)
+food3 = Food('Food', 'You picked up a bag. There is food in a bag, the bag also feels warm. This restores 25 hunger',
+             20, False, restrooms, False)
+food4 = Food('Food', 'You picked up a bag. There is food in a bag, the bag also feels warm. This restores 25 hunger',
+             20, False, restrooms, False)
+food5 = Food('Food', 'You picked up a bag. There is food in a bag, the bag also feels warm. This restores 25 hunger',
+             20, False, restrooms, False)
+food6 = Food('Food', 'You picked up a bag. There is food in a bag, the bag also feels warm. This restores 25 hunger',
+             20, False, restrooms, False)
+food7 = Food('Food', 'You picked up a bag. There is food in a bag, the bag also feels warm. This restores 25 hunger',
+             20, False, restrooms, False)
+food8 = Food('Food', 'You picked up a bag. There is food in a bag, the bag also feels warm. This restores 25 hunger',
+             20, False, restrooms, False)
+food9 = Food('Food', 'You picked up a bag. There is food in a bag, the bag also feels warm. This restores 25 hunger',
+             20, False, restrooms, False)
+food10 = Food('Food', 'You picked up a bag. There is food in a bag, the bag also feels warm. This restores 25 hunger',
+              20, False, restrooms, False)
+food11 = Food('Food', 'You picked up a bag. There is food in a bag, the bag also feels warm. This restores 25 hunger',
+              20, False, restrooms, False)
+
+bandages = Bandages('bandages', 'You picked up bandages, these restore 25 health to you', 25, False, rest, False)
+healing_pot = HealingPotion('healing potion', 'You picked a healing potion. This potion restores 45 health to you.',
+                            45, False, bed, False)
+healing_pot2 = HealingPotion('healing potion', 'You picked a healing potion. This potion restores 45 health to you.',
+                             45, False, garage, False)
 user = User('Player', 'You are an average person not knowing a lot about what is around him.', 100, 10)
-enemy1 = Enemy('Zombie', 'One of many zombies', 200, pond, 'food')
-enemy2 = Enemy('Zombie', 'One of many zombies', 200, street, 'food')
-enemy3 = Enemy('Zombie', 'One of many zombies', 150, street2, 'food')
-enemy4 = Enemy('Zombie', 'One of many zombies', 85, street3, 'food')
-enemy5 = Enemy('Zombie', 'One of many zombies', 50, street4, 'food')
-enemy6 = Enemy('Zombie', 'One of many zombies', 85, park, 'food')
-enemy7 = Enemy('Zombie', 'One of many zombies', 80, playground, 'food')
-enemy8 = Enemy('Zombie', 'One of many zombies', 123, s_gated_area, 'food')
-enemy9 = Enemy('Zombie', 'One of many zombies', 420, w_gated_area, 'food')
+enemy1 = Enemy('Zombie', 'One of many zombies', 200, pond, food3)
+enemy2 = Enemy('Zombie', 'One of many zombies', 1, street, food4)
+enemy3 = Enemy('Zombie', 'One of many zombies', 150, street2, food5)
+enemy4 = Enemy('Zombie', 'One of many zombies', 85, street3, food6)
+enemy5 = Enemy('Zombie', 'One of many zombies', 50, street4, food7)
+enemy6 = Enemy('Zombie', 'One of many zombies', 85, park, food8)
+enemy7 = Enemy('Zombie', 'One of many zombies', 80, playground, food9)
+enemy8 = Enemy('Zombie', 'One of many zombies', 123, s_gated_area, food10)
+enemy9 = Enemy('Zombie', 'One of many zombies', 420, w_gated_area, food11)
 
 item_list = [bandages, assault_rifle, snipe, healing_pot, food, axe, shotgun, pistol, crossbow, Key_To_Pond,
              knife, backpack, food2, healing_pot2]
 enemy_list = [enemy1, enemy2, enemy3, enemy4, enemy5, enemy6, enemy7, enemy8, enemy9]
-
+food_list = [food3, food4, food5, food6, food7, food8, food9, food10, food11]
 current_node = spawn
 directions = ['south', 'north', 'east', 'west', 'down', 'up', 'northeast', 'southeast']
 short_directions = ['s', 'n', 'e', 'w', 'd', 'u', 'ne', 'se']
@@ -503,6 +521,7 @@ while health != 0:
                 enemy.room = None
                 enemy_list.remove(enemy)
                 nil.append(enemy)
+                current_node.item()
                 print("You killed %s" % str.lower(enemy.name))
     elif 'attack zombie with' in command:
         ii = isinstance
