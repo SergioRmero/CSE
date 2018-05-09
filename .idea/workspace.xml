@@ -44,8 +44,8 @@
       <file leaf-file-name="CYOA.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/CYOA.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1886">
-              <caret line="374" column="49" lean-forward="false" selection-start-line="374" selection-start-column="49" selection-end-line="374" selection-end-column="49" />
+            <state relative-caret-position="476">
+              <caret line="367" column="2" lean-forward="false" selection-start-line="367" selection-start-column="2" selection-end-line="367" selection-end-column="2" />
               <folding />
             </state>
           </provider>
@@ -118,7 +118,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -131,6 +130,7 @@
         </subPane>
       </pane>
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -344,7 +344,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="18" />
+      <option name="time" value="19" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -686,8 +686,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/CYOA.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1886">
-          <caret line="374" column="49" lean-forward="false" selection-start-line="374" selection-start-column="49" selection-end-line="374" selection-end-column="49" />
+        <state relative-caret-position="476">
+          <caret line="367" column="2" lean-forward="false" selection-start-line="367" selection-start-column="2" selection-end-line="367" selection-end-column="2" />
           <folding />
         </state>
       </provider>

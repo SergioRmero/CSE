@@ -347,23 +347,26 @@ food = Food('food', 'You picked up a bag. There is food in a bag, the bag also f
 food2 = Food('Food', 'You picked up a bag. There is food in a bag, the bag also feels warm. This restores 25 hunger',
              20, False, restrooms, False)
 food3 = Food('Food', 'You picked up a bag. There is food in a bag, the bag also feels warm. This restores 25 hunger',
-             20, False, restrooms, False)
+             20, True, restrooms, False)
 food4 = Food('Food', 'You picked up a bag. There is food in a bag, the bag also feels warm. This restores 25 hunger',
-             20, False, restrooms, False)
+             20, True, restrooms, False)
 food5 = Food('Food', 'You picked up a bag. There is food in a bag, the bag also feels warm. This restores 25 hunger',
-             20, False, restrooms, False)
+             20, True, restrooms, False)
 food6 = Food('Food', 'You picked up a bag. There is food in a bag, the bag also feels warm. This restores 25 hunger',
-             20, False, restrooms, False)
+             20, True, restrooms, False)
 food7 = Food('Food', 'You picked up a bag. There is food in a bag, the bag also feels warm. This restores 25 hunger',
-             20, False, restrooms, False)
+             20, True, restrooms, False)
 food8 = Food('Food', 'You picked up a bag. There is food in a bag, the bag also feels warm. This restores 25 hunger',
-             20, False, restrooms, False)
+             20, True, restrooms, False)
 food9 = Food('Food', 'You picked up a bag. There is food in a bag, the bag also feels warm. This restores 25 hunger',
-             20, False, restrooms, False)
+             20, True, restrooms, False)
 food10 = Food('Food', 'You picked up a bag. There is food in a bag, the bag also feels warm. This restores 25 hunger',
-              20, False, restrooms, False)
+              20, True, restrooms, False)
 food11 = Food('Food', 'You picked up a bag. There is food in a bag, the bag also feels warm. This restores 25 hunger',
-              20, False, restrooms, False)
+              20, True, restrooms, False)
+
+# if enemy.health <= 0:
+#    food.pick = False
 
 bandages = Bandages('bandages', 'You picked up bandages, these restore 25 health to you', 25, False, rest, False)
 healing_pot = HealingPotion('healing potion', 'You picked a healing potion. This potion restores 45 health to you.',
@@ -372,7 +375,7 @@ healing_pot2 = HealingPotion('healing potion', 'You picked a healing potion. Thi
                              45, False, garage, False)
 user = User('Player', 'You are an average person not knowing a lot about what is around him.', 100, 10)
 enemy1 = Enemy('Zombie', 'One of many zombies', 200, pond, food3)
-enemy2 = Enemy('Zombie', 'One of many zombies', 1, street, food4)
+enemy2 = Enemy('Zombie', 'One of many zombies', 200, street, food4)
 enemy3 = Enemy('Zombie', 'One of many zombies', 150, street2, food5)
 enemy4 = Enemy('Zombie', 'One of many zombies', 85, street3, food6)
 enemy5 = Enemy('Zombie', 'One of many zombies', 50, street4, food7)
@@ -395,7 +398,7 @@ hunger = 100
 main = None
 inventory = []
 
-nil = []
+dead_items = []
 
 ii = isinstance
 
@@ -508,7 +511,7 @@ while health != 0:
             if str.lower(_item.name) in command and _item.is_picked and ii(_item, Bandages) or ii(_item, HealingPotion):
                 _item.heal(current_node)
                 inventory.remove(_item)
-                nil.append(_item)
+                dead_items.append(_item)
         else:
             print('Command not recognized.')
     elif 'shoot' in command:
@@ -520,8 +523,8 @@ while health != 0:
             if enemy.room is current_node and enemy.health <= 0:
                 enemy.room = None
                 enemy_list.remove(enemy)
-                nil.append(enemy)
-                current_node.item()
+                dead_items.append(enemy)
+
                 print("You killed %s" % str.lower(enemy.name))
     elif 'attack zombie with' in command:
         ii = isinstance
@@ -535,7 +538,7 @@ while health != 0:
             if str.lower(_item.name) in command and _item.is_picked and ii(_item, Food):
                 _item.eat(20)
                 inventory.remove(_item)
-                nil.append(_item)
+                dead_items.append(_item)
                 hunger += 20
     elif command == 'stats':
         print("Health = %s" % health + "\n" + "Hunger = %s" % hunger)
