@@ -365,9 +365,6 @@ food10 = Food('Food', 'You picked up a bag. There is food in a bag, the bag also
 food11 = Food('Food', 'You picked up a bag. There is food in a bag, the bag also feels warm. This restores 25 hunger',
               20, True, restrooms, False)
 
-# if enemy.health <= 0:
-#    food.pick = False
-
 bandages = Bandages('bandages', 'You picked up bandages, these restore 25 health to you', 25, False, rest, False)
 healing_pot = HealingPotion('healing potion', 'You picked a healing potion. This potion restores 45 health to you.',
                             45, False, bed, False)
@@ -375,7 +372,7 @@ healing_pot2 = HealingPotion('healing potion', 'You picked a healing potion. Thi
                              45, False, garage, False)
 user = User('Player', 'You are an average person not knowing a lot about what is around him.', 100, 10)
 enemy1 = Enemy('Zombie', 'One of many zombies', 200, pond, food3)
-enemy2 = Enemy('Zombie', 'One of many zombies', 200, street, food4)
+enemy2 = Enemy('Zombie', 'One of many zombies', 2, street, food4)
 enemy3 = Enemy('Zombie', 'One of many zombies', 150, street2, food5)
 enemy4 = Enemy('Zombie', 'One of many zombies', 85, street3, food6)
 enemy5 = Enemy('Zombie', 'One of many zombies', 50, street4, food7)
@@ -519,13 +516,13 @@ while health != 0:
             if str.lower(enemy.name) in command and enemy.room is current_node:
                 enemy.health -= main.damage_dealt
                 main.shoot(enemy)
-        for enemy in enemy_list:
-            if enemy.room is current_node and enemy.health <= 0:
-                enemy.room = None
-                enemy_list.remove(enemy)
-                dead_items.append(enemy)
-
-                print("You killed %s" % str.lower(enemy.name))
+                if enemy.health <= 0:
+                    enemy.room = None
+                    enemy.item.room = current_node
+                    enemy.item.is_picked = False
+                    enemy_list.remove(enemy)
+                    dead_items.append(enemy)
+                    print("You killed %s" % str.lower(enemy.name))
     elif 'attack zombie with' in command:
         ii = isinstance
         for _item in inventory:
