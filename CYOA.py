@@ -174,12 +174,12 @@ class Backpack(Wearable):
 
 class Food(Consumable):
     def __init__(self, name, description, hunger_restored, is_picked, room, used):
-        self.hunger = 100
+        self.hunger = hunger_restored
         super(Food, self). __init__(name, description, hunger_restored, is_picked, room, used)
 
-    def eat(self, hunger_restored):
-        self.hunger += hunger_restored
-        print("You ate %s and restored %d hunger" % (self.name, hunger_restored))
+    def eat(self, hung):
+        hung += self.hunger
+        print("You ate %s and restored %d hunger" % (self.name, self.hunger))
 
 
 class Healing(Consumable):
@@ -352,24 +352,17 @@ food = Food('Food', 'You picked up a bag. There is food in a bag, the bag also f
             20, False, kitchen, False)
 food2 = Food('Food', 'You picked up a bag. There is food in a bag, the bag also feels warm. This restores 25 hunger',
              20, False, restrooms, False)
-food3 = Food('beesechurger', 'chinken nunget',
-             20, True, pond, False)
-food4 = Food('Food', 'You picked up a bag. There is food in a bag, the bag also feels warm. This restores 25 hunger',
-             20, True, street, False)
-food5 = Food('Food', 'You picked up a bag. There is food in a bag, the bag also feels warm. This restores 25 hunger',
-             20, True, street2, False)
-food6 = Food('Food', 'You picked up a bag. There is food in a bag, the bag also feels warm. This restores 25 hunger',
-             20, True, street3, False)
-food7 = Food('Food', 'You picked up a bag. There is food in a bag, the bag also feels warm. This restores 25 hunger',
-             20, True, street4, False)
-food8 = Food('Food', 'You picked up a bag. There is food in a bag, the bag also feels warm. This restores 25 hunger',
-             20, True, park, False)
-food9 = Food('Food', 'You picked up a bag. There is food in a bag, the bag also feels warm. This restores 25 hunger',
-             20, True, playground, False)
-food10 = Food('Food', 'You picked up a bag. There is food in a bag, the bag also feels warm. This restores 25 hunger',
+food3 = Food('beesechurger', 'chinken nunget', 30, True, pond, False)
+food4 = Food('chicken strips', 'Food', 20, True, street, False)
+food5 = Food('prunes', 'Food', 20, True, street2, False)
+food6 = Food('boneless pizza', "It don't got no bone in it", 25, True, street3, False)
+food7 = Food('chick fil a', 'is not open on Sundays', 15, True, street4, False)
+food8 = Food('sandwich', 'You picked up a bag. This restores 25 hunger', 20, True, park, False)
+food9 = Food('donut', 'This restores 25 hunger', 20, True, playground, False)
+food10 = Food('expired milk', 'You picked up a bag. This restores 5 hunger',
               20, True, s_gated_area, False)
-food11 = Food('Food', 'You picked up a bag. There is food in a bag, the bag also feels warm. This restores 25 hunger',
-              20, True, w_gated_area, False)
+food11 = Food('bean burrito', 'You picked up a bag. There is food in a bag, the bag also feels warm.'
+                              ' This restores 25 hunger', 20, True, w_gated_area, False)
 
 bandages = Bandages('bandages', 'You picked up bandages, these restore 25 health to you', 25, False, rest, False)
 healing_pot = HealingPotion('healing potion', 'You picked a healing potion. This potion restores 45 health to you.',
@@ -549,10 +542,9 @@ while health != 0:
         ii = isinstance
         for _item in inventory:
             if str.lower(_item.name) in command and _item.is_picked and ii(_item, Food):
-                _item.eat(20)
+                _item.eat(hunger)
                 inventory.remove(_item)
                 dead_items.append(_item)
-                hunger += 20
     elif command == 'stats':
         print("Health = %s" % health + "\n" + "Hunger = %s" % hunger)
     else:
