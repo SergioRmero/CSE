@@ -177,8 +177,7 @@ class Food(Consumable):
         self.hunger = hunger_restored
         super(Food, self). __init__(name, description, hunger_restored, is_picked, room, used)
 
-    def eat(self, hung):
-        hung += self.hunger
+    def eat(self):
         print("You ate %s and restored %d hunger" % (self.name, self.hunger))
 
 
@@ -389,7 +388,7 @@ short_directions = ['s', 'n', 'e', 'w', 'd', 'u', 'ne', 'se']
 
 sib = 10
 health = 100
-hunger = 100
+hunger = 1
 main = None
 inventory = []
 
@@ -405,6 +404,9 @@ while health != 0:
         health = 100
     elif hunger > 100:
         hunger = 100
+    elif hunger < 0:
+        hunger = 0
+        health -= 10
     command = input('>_').lower().strip()
     if command == 'quit':
         quit(0)
@@ -505,6 +507,7 @@ while health != 0:
         ii = isinstance
         for _item in inventory:
             if str.lower(_item.name) in command and _item.is_picked and ii(_item, Bandages) or ii(_item, HealingPotion):
+                health += _item.health
                 _item.heal(current_node)
                 inventory.remove(_item)
                 dead_items.append(_item)
@@ -542,7 +545,8 @@ while health != 0:
         ii = isinstance
         for _item in inventory:
             if str.lower(_item.name) in command and _item.is_picked and ii(_item, Food):
-                _item.eat(hunger)
+                hunger += _item.hunger
+                _item.eat()
                 inventory.remove(_item)
                 dead_items.append(_item)
     elif command == 'stats':
