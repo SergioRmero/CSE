@@ -212,6 +212,17 @@ class HealingPotion(Healing):
         print("You healed 25 hp with %s" % self.name)
 
 
+class PainKillers(Healing):
+    def __init__(self, name, description, health_restored, is_picked, room, used):
+        self.health = 100
+        super(PainKillers, self). __init__(name, description, health_restored, is_picked, room, used)
+
+    def heal(self, heal_amount):
+        heal_amount = 45
+        self.health += heal_amount
+        print('You healed 45 hp with %s' % self.name)
+
+
 class Characters(object):
     def __init__(self, name, description, health):
         self.name = name
@@ -296,10 +307,10 @@ attic = Room("Attic", "There are a lot of dusty boxes that are pushed to the bac
 porch = Room("Porch", "You go outside and the sun is really bright, you close the door behind you. The porch is very"
                       " small, there is a hammock to the left of you and a grill to the right. There is also a street"
                       " in front of you and what looks like a park in the distance.",
-             "front", "street", "garage", None, None, None, None, None)
+             "front", "street", 'garage', None, None, None, None, None)
 garage = Room("Garage", "The garage is small, there is no car inside. There are empty, dusty shelves"
-                        " all across the walls.", None, "street2", "porch",
-              None, None, None, None, None)
+                        " all across the walls.", None, "street2", None,
+              'porch', None, None, None, None)
 street = Room("Street", "You are on the street in front of the house, on the east there is street, and at west there"
                         " is more street, there is also a zombie coming towards you.", "porch", "park", "street2",
                         "street3", None, None, None, None)
@@ -362,12 +373,14 @@ food10 = Food('expired milk', 'You picked up a bag. This restores 5 hunger',
               20, True, s_gated_area, False)
 food11 = Food('bean burrito', 'You picked up a bag. There is food in a bag, the bag also feels warm.'
                               ' This restores 25 hunger', 20, True, w_gated_area, False)
-
-bandages = Bandages('bandages', 'You picked up bandages, these restore 25 health to you', 25, False, rest, False)
-healing_pot = HealingPotion('healing potion', 'You picked a healing potion. This potion restores 45 health to you.',
+bandages = Bandages('bandages', 'You picked up bandages, these restore 10 health to you', 25, False, rest, False)
+bandages2 = Bandages('Bandages', 'You picked up bandages, these restore 10 health to you', 25, False, restrooms, False)
+healing_pot = HealingPotion('healing potion', 'You picked a healing potion. This potion restores 25 health to you.',
                             45, False, bed, False)
-healing_pot2 = HealingPotion('healing potion', 'You picked a healing potion. This potion restores 45 health to you.',
+healing_pot2 = HealingPotion('Healing potion', 'You picked a healing potion. This potion restores 25 health to you.',
                              45, False, garage, False)
+painkillers = PainKillers('pain killers', 'These restore 45 hp', 45, False, rest, False)
+painkillers2 = PainKillers('Pain killers', "These restore 45 hp", 45, False, porch, False)
 user = User('Player', 'You are an average person not knowing a lot about what is around him.', 100, 10)
 enemy1 = Enemy('Zombie', 'One of many zombies', 200, pond, food3)
 enemy2 = Enemy('Zombie', 'One of many zombies', 100, street, food4)
@@ -380,7 +393,8 @@ enemy8 = Enemy('Zombie', 'One of many zombies', 123, s_gated_area, food10)
 enemy9 = Enemy('Zombie', 'One of many zombies', 420, w_gated_area, food11)
 
 item_list = [bandages, assault_rifle, snipe, healing_pot, food, axe, shotgun, pistol, crossbow, Key_To_Pond,
-             knife, backpack, food2, healing_pot2, food3, food4, food5, food6, food7, food8, food9, food10, food11]
+             knife, backpack, food2, healing_pot2, food3, food4, food5, food6, food7, food8, food9, food10, food11,
+             bandages2, painkillers, painkillers2]
 enemy_list = [enemy1, enemy2, enemy3, enemy4, enemy5, enemy6, enemy7, enemy8, enemy9]
 current_node = spawn
 directions = ['south', 'north', 'east', 'west', 'down', 'up', 'northeast', 'southeast']
@@ -388,7 +402,7 @@ short_directions = ['s', 'n', 'e', 'w', 'd', 'u', 'ne', 'se']
 
 sib = 10
 health = 100
-hunger = 1
+hunger = 100
 main = None
 inventory = []
 
@@ -506,13 +520,14 @@ while health != 0:
     elif 'heal with' in command:
         ii = isinstance
         for _item in inventory:
-            if str.lower(_item.name) in command and _item.is_picked and ii(_item, Bandages) or ii(_item, HealingPotion):
+            b = Bandages
+            hp = HealingPotion
+            pk = PainKillers
+            if str.lower(_item.name) in command and _item.is_picked and ii(_item, b) or ii(_item, hp) or ii(_item, pk):
                 health += _item.health
                 _item.heal(current_node)
                 inventory.remove(_item)
                 dead_items.append(_item)
-        else:
-            print('Command not recognized.')
     elif 'shoot' in command:
         for enemy in enemy_list:
             if str.lower(enemy.name) in command and enemy.room is current_node:
@@ -521,7 +536,9 @@ while health != 0:
                 else:
                     zombie_damage = rand.randint(15, 25)
                     if accuracy is 0:
-                        print("u missed lol")
+                        health -= zombie_damage
+                        print("You missed the shot so the zombie took advantage and attacked you.")
+                        print('Health = %s' % health)
                     else:
                         enemy.health -= main.damage_dealt
                         main.shoot(enemy)
@@ -538,7 +555,7 @@ while health != 0:
                     zombie_damage = rand.randint(15, 25)
                     accuracy = rand.randint(0, 2)
                     if accuracy is 0:
-                        print("u missed lol")
+                        print("You missed")
                     else:
                         _item.attack()
     elif 'eat' in command:
