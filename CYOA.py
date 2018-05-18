@@ -373,12 +373,12 @@ food10 = Food('expired milk', 'You picked up a bag. This restores 5 hunger',
               20, True, s_gated_area, False)
 food11 = Food('bean burrito', 'You picked up a bag. There is food in a bag, the bag also feels warm.'
                               ' This restores 25 hunger', 20, True, w_gated_area, False)
-bandages = Bandages('bandages', 'You picked up bandages, these restore 10 health to you', 25, False, rest, False)
-bandages2 = Bandages('Bandages', 'You picked up bandages, these restore 10 health to you', 25, False, restrooms, False)
+bandages = Bandages('bandages', 'You picked up bandages, these restore 10 health to you', 10, False, rest, False)
+bandages2 = Bandages('Bandages', 'You picked up bandages, these restore 10 health to you', 10, False, restrooms, False)
 healing_pot = HealingPotion('healing potion', 'You picked a healing potion. This potion restores 25 health to you.',
-                            45, False, bed, False)
+                            25, False, bed, False)
 healing_pot2 = HealingPotion('Healing potion', 'You picked a healing potion. This potion restores 25 health to you.',
-                             45, False, garage, False)
+                             25, False, garage, False)
 painkillers = PainKillers('pain killers', 'These restore 45 hp', 45, False, rest, False)
 painkillers2 = PainKillers('Pain killers', "These restore 45 hp", 45, False, porch, False)
 user = User('Player', 'You are an average person not knowing a lot about what is around him.', 100, 10)
@@ -511,6 +511,8 @@ while health != 0:
     elif command == 'inventory':
         for _item in inventory:
             print(_item.name)
+        else:
+            print("Command not recognized.")
     elif command == "look":
         print(current_node.name + '\n' + current_node.description)
         print("Current items in the room :")
