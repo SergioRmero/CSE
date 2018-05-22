@@ -183,22 +183,23 @@ class Food(Consumable):
 
 class Healing(Consumable):
     def __init__(self, name, description, health_restored, is_picked, room, used):
-        self.health = 100
-        super(Healing, self). __init__(name, description, health_restored, is_picked, room, used)
+        super(Healing, self). __init__(name, description, None, is_picked, room, used)
+        self.health_restored = health_restored
 
-    def heal(self, heal_amount):
-        self.health += heal_amount
+    def heal(self):
+        global health
+        health += self.health_restored
 
 
 class Bandages(Healing):
     def __init__(self, name, description, health_restored, is_picked, room, used):
-        self.health = 100
-        super(Bandages, self). __init__(name, description, health_restored, is_picked, room, used)
+        super(Bandages, self). __init__(name, description, None, is_picked, room, used)
+        self.health_restored = health_restored
 
-    def heal(self, heal_amount):
-        heal_amount = 10
-        self.health += heal_amount
-        print("You healed 10 hp with %s" % self.name)
+    def heal(self):
+        global health
+        health += self.health_restored
+        print("You healed %d hp with %s" % (self.health_restored, self.name))
 
 
 class HealingPotion(Healing):
@@ -206,21 +207,20 @@ class HealingPotion(Healing):
         self.health = 100
         super(HealingPotion, self). __init__(name, description, health_restored, is_picked, room, used)
 
-    def heal(self, heal_amount):
-        heal_amount = 25
-        self.health += heal_amount
-        print("You healed 25 hp with %s" % self.name)
+    def heal(self):
+        global health
+        health += self.health_restored
+        print("You healed %d hp with %s" % (self.health_restored, self.name))
 
 
 class PainKillers(Healing):
     def __init__(self, name, description, health_restored, is_picked, room, used):
-        self.health = 100
         super(PainKillers, self). __init__(name, description, health_restored, is_picked, room, used)
 
-    def heal(self, heal_amount):
-        heal_amount = 45
-        self.health += heal_amount
-        print('You healed 45 hp with %s' % self.name)
+    def heal(self):
+        global health
+        health += self.health_restored
+        print('You healed %d hp with %s' % (self.health_restored, self.name))
 
 
 class Characters(object):
@@ -409,10 +409,10 @@ inventory = []
 dead_items = []
 
 ii = isinstance
-
+print('Type "tutorial" to see tutorial')
 print(current_node.name + '\n' + current_node.description + '\n' + 'Health = %s' % health + '\n' + 'Hunger = %s'
       % hunger)
-while health != 0:
+while health > 0:
     accuracy = rand.randint(0, 2)
     if health > 100:
         health = 100
@@ -424,6 +424,16 @@ while health != 0:
     command = input('>_').lower().strip()
     if command == 'quit':
         quit(0)
+    elif command == 'tutorial':
+        print("Welcome! To move rooms type the direction you want to go in. For example, type also type n to go north,"
+              " e to go east, etc. Type 'look' to see what room you're in. Type 'items' to see what items are in the "
+              "room. \nTo pick up items type 'take' and the item you want to pick up. To drop items type 'drop' and the"
+              " item you want to drop. To see what items you have in your inventory type 'inventory'. \nTo see your "
+              "health and hunger type 'stats'. To heal type 'heal with' and the item you want to heal with. To eat, "
+              "type 'eat' and the item you want to eat. There are zombies in this game\nso you will want to obtain"
+              " some weapons. To shoot type 'shoot zombie', you will need to equip the gun before you are able to use"
+              " it. To attack with a melee weapon type 'attack zombie with'\nand the melee weapon you want to attack "
+              "with. And finally, to quit playing the game type quit and the game will stop running. Good luck!")
     elif command == "items":
         __item = False
         for _item in item_list:
@@ -511,8 +521,6 @@ while health != 0:
     elif command == 'inventory':
         for _item in inventory:
             print(_item.name)
-        else:
-            print("Command not recognized.")
     elif command == "look":
         print(current_node.name + '\n' + current_node.description)
         print("Current items in the room :")
@@ -521,15 +529,17 @@ while health != 0:
                 print("- " + _item.name)
     elif 'heal with' in command:
         ii = isinstance
+        b = Bandages
+        hp = HealingPotion
+        pk = PainKillers
+        item = None
         for _item in inventory:
-            b = Bandages
-            hp = HealingPotion
-            pk = PainKillers
-            if str.lower(_item.name) in command and _item.is_picked and ii(_item, b) or ii(_item, hp) or ii(_item, pk):
-                health += _item.health
-                _item.heal(current_node)
-                inventory.remove(_item)
-                dead_items.append(_item)
+            if str.lower(_item.name) in command:
+                item = _item
+        if ii(item, b) or ii(item, hp) or ii(item, pk):
+            item.heal()
+            inventory.remove(item)
+            dead_items.append(item)
     elif 'shoot' in command:
         for enemy in enemy_list:
             if str.lower(enemy.name) in command and enemy.room is current_node:
