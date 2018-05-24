@@ -52,14 +52,6 @@ class Wearable(Item):
         print("You put on %s" % self.name)
 
 
-class KeyToPond(Item):
-    def __init__(self, name, description, is_picked, room, used):
-        super(KeyToPond, self). __init__(name, description, is_picked, room, used)
-
-    def use(self):
-        print("You used %s to open Gate to Pond" % self.name)
-
-
 class Ranged(Weapons):
     def __init__(self, name, description, damage_dealt, is_picked, room, used):
         super(Ranged, self). __init__(name, description, damage_dealt, is_picked, room, used)
@@ -130,6 +122,17 @@ class Sniper(Guns):
         print("You shoot %s with your %s" % (str.lower(target.name), str.lower(self.name)))
 
 
+class SteelSword(Melee):
+    def __init__(self, name, description, damage_dealt, is_picked, room, used):
+        self.enemy_health = 100
+        super(SteelSword, self). __init__(name, description, damage_dealt, is_picked, room, used)
+
+    def attack(self):
+        damage_dealt = 50
+        self.enemy_health -= damage_dealt
+        print('You attack with %s' % self.name)
+
+
 class Axe(Melee):
     def __init__(self, name, description, damage_dealt, is_picked, room, used):
         self.enemy_health = 100
@@ -150,26 +153,6 @@ class Knife(Melee):
         damage_dealt = 10
         self.enemy_health -= damage_dealt
         print("You attack with %s" % self.name)
-
-
-class Backpack(Wearable):
-    def __init__(self, name, description, storage, is_picked, room, used, worn):
-        self.worn = worn
-        super(Backpack, self). __init__(name, description, storage, is_picked, room, used)
-
-    def wear(self):
-        if not self.worn:
-            self.worn = True
-            print("You are wearing %s" % self.name)
-        else:
-            print("You're already wearing the %s" % str.lower(self.name))
-
-    def off(self):
-        if self.worn:
-            self.worn = False
-            print("You took off %s" % self.name)
-        else:
-            print("You are not wearing %s" % self.name)
 
 
 class Food(Consumable):
@@ -279,6 +262,8 @@ class Room(object):
 spawn = Room("Spawn", 'You are in an empty room with the ceiling light dimly lit.'
              ' There is an open door at the south side of the room',
              None, "west", None, None, None, None, None, None)
+spawn_clos = Room('Closet', 'You are in a closet that has many supplies for.', None, spawn, None, None, None, None,
+                  None, None)
 west = Room("West Room", "There is a door on the east side of the room and a trap door on the floor that seems to be"
             " unlocked", "spawn", None, "living", None, None, "secret", None, None)
 secret = Room("Secret Room", "This is a dark room with what seems to"
@@ -291,8 +276,8 @@ front = Room("Front Door", "There is a dark oak wooden door, the "
                            "Living Room is right behind you.", "living", "porch",
              None, None, None, None, None, None)
 kitchen = Room("Kitchen", "There is a table in the middle of the room with chairs surrounding it."
-                          " There is also shoofood sitting on the counter. There is a door to"
-               " the Southeast corner of the room and another door leading back to the Living Room to the south", None,
+                          " There is also some food sitting on the counter. There is a door to"
+               " the Southeast corner of the room and another\ndoor leading back to the Living Room to the south", None,
                "living", None, None, None, None, None, "bed")
 bed = Room("Bed Room", "There is a bed next the side wall, there is a night stand next to it and a desk on the other"
                        " side of the room with a window. There is a bottle with red liquid and a pistol on the desk",
@@ -345,9 +330,9 @@ restrooms = Room('Park Restrooms', 'There are dirty old restrooms that stink. In
                                    ' To the east, the playground.', None, None,
                  None, 'playground', None, None, None, None)
 
-Key_To_Pond = Item('key to pond', 'You picked up a key to the pond', False, restrooms, False)
-crossbow = Crossbow('crossbow', 'It looks like a crossbow, when it fires the arrow goes very far', 50, False,
+crossbow = Crossbow('crossbow', 'It looks like a crossbow, when it fires the arrow goes very far', 55, False,
                     garage, False)
+steel_sword = SteelSword('Steel Sword', 'A nice shiny sword that looks very sharp', 50, False, spawn_clos, False)
 pistol = Pistol('pistol', 'You picked up a pistol.', 15, False, bed, False)
 shotgun = Shotgun('shotgun', 'You picked up a shotgun, is more effective at close range.', 70,
                   False, secret, False)
@@ -356,8 +341,6 @@ snipe = Sniper('sniper', 'A sniper, this does more damage than the crossbow', 65
 axe = Axe('axe', 'You picked up an axe, does not do a lot of damage.', 15, False, pond,
           False)
 knife = Knife('knife', 'You picked up a knife, does the least damage out of all the weapons', 10, False, attic, False)
-backpack = Backpack('backpack', 'You picked up a backpack, you could probably put some items in here.', 10, False,
-                    secret, False, False)
 food = Food('Food', 'You picked up a bag. There is food in a bag, the bag also feels warm. This restores 25 hunger',
             20, False, kitchen, False)
 food2 = Food('Food', 'You picked up a bag. There is food in a bag, the bag also feels warm. This restores 25 hunger',
@@ -381,6 +364,7 @@ healing_pot2 = HealingPotion('Healing potion', 'You picked a healing potion. Thi
                              25, False, garage, False)
 painkillers = PainKillers('pain killers', 'These restore 45 hp', 45, False, rest, False)
 painkillers2 = PainKillers('Pain killers', "These restore 45 hp", 45, False, porch, False)
+painkillers3 = PainKillers('Pain killers', "These restore 45 hp", 45, False, porch, False)
 user = User('Player', 'You are an average person not knowing a lot about what is around him.', 100, 10)
 enemy1 = Enemy('Zombie', 'One of many zombies', 200, pond, food3)
 enemy2 = Enemy('Zombie', 'One of many zombies', 100, street, food4)
@@ -392,9 +376,9 @@ enemy7 = Enemy('Zombie', 'One of many zombies', 80, playground, food9)
 enemy8 = Enemy('Zombie', 'One of many zombies', 123, s_gated_area, food10)
 enemy9 = Enemy('Zombie', 'One of many zombies', 420, w_gated_area, food11)
 
-item_list = [bandages, assault_rifle, snipe, healing_pot, food, axe, shotgun, pistol, crossbow, Key_To_Pond,
-             knife, backpack, food2, healing_pot2, food3, food4, food5, food6, food7, food8, food9, food10, food11,
-             bandages2, painkillers, painkillers2]
+item_list = [bandages, assault_rifle, snipe, healing_pot, food, axe, shotgun, pistol, crossbow,
+             knife, food2, healing_pot2, food3, food4, food5, food6, food7, food8, food9, food10, food11,
+             bandages2, painkillers, painkillers2, painkillers3, ]
 enemy_list = [enemy1, enemy2, enemy3, enemy4, enemy5, enemy6, enemy7, enemy8, enemy9]
 current_node = spawn
 directions = ['south', 'north', 'east', 'west', 'down', 'up', 'northeast', 'southeast']
@@ -425,15 +409,15 @@ while health > 0:
     if command == 'quit':
         quit(0)
     elif command == 'tutorial':
-        print("Welcome! To move rooms type the direction you want to go in. For example, type also type n to go north,"
-              " e to go east, etc. Type 'look' to see what room you're in. Type 'items' to see what items are in the "
-              "room. \nTo pick up items type 'take' and the item you want to pick up. To drop items type 'drop' and the"
-              " item you want to drop. To see what items you have in your inventory type 'inventory'. \nTo see your "
-              "health and hunger type 'stats'. To heal type 'heal with' and the item you want to heal with. To eat, "
-              "type 'eat' and the item you want to eat. There are zombies in this game\nso you will want to obtain"
-              " some weapons. To shoot type 'shoot zombie', you will need to equip the gun before you are able to use"
-              " it. To attack with a melee weapon type 'attack zombie with'\nand the melee weapon you want to attack "
-              "with. And finally, to quit playing the game type quit and the game will stop running. Good luck!")
+        print("Welcome!\n\nTo move rooms type the direction you want to go in.\nFor example, type n to go north,"
+              " e to go east, etc.\n\nType 'look' to see what room you're in.\nType 'items' to see what items are in a "
+              "room. \nTo take items, type 'take' and the item you want to pick up.\nTo drop items, type 'drop' and the"
+              " item you want to drop.\nTo see what items you have in your inventory type 'inventory'. \nTo see your "
+              "health and hunger type 'stats'.\nTo heal, type 'heal with' and the item you want to heal with.\nTo eat, "
+              "type 'eat' and the item you want to eat.\n\nThere are zombies in this game, so you will want to obtain"
+              " some weapons.\nTo shoot type 'shoot zombie', you will need to equip the gun before you are able to use"
+              " it.\nTo attack with a melee weapon type 'attack zombie with', and the melee weapon you want to attack "
+              "with.\nAnd finally, to quit playing the game type 'quit' and the game will stop running.\nGood luck!")
     elif command == "items":
         __item = False
         for _item in item_list:
@@ -477,18 +461,6 @@ while health > 0:
                 _item.drop(current_node)
                 inventory.remove(_item)
                 item_list.append(_item)
-    elif "wear" in command:
-        for _item in inventory:
-            if str.lower(_item.name) in command and _item.is_picked:
-                if isinstance(_item, Backpack):
-                    _item.wear()
-                else:
-                    print("You can't wear %s" % _item.name)
-    elif "remove" in command:
-        for _item in inventory:
-            if str.lower(_item.name) in command and _item.is_picked:
-                if isinstance(_item, Backpack):
-                    _item.off()
     elif "equip" in command:
         for _item in inventory:
             if str.lower(_item.name) in command and _item.pick:
@@ -581,7 +553,15 @@ while health > 0:
     elif command == 'stats':
         print("Health = %s" % health + "\n" + "Hunger = %s" % hunger)
     else:
-        print("Command not recognized")
+        atk = False
+        for enemy in enemy_list:
+            if enemy.room is current_node:
+                zombie_damage = rand.randint(15, 25)
+                health -= zombie_damage
+                print("You stumbled, and the %s attacked you." % str.lower(enemy.name))
+                atk = True
+        if not atk:
+            print("Command not recognized")
     if command in directions:
         try:
             current_node.move(command)
